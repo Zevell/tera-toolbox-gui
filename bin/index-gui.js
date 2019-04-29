@@ -1,4 +1,7 @@
-const { app, BrowserWindow } = require('electron');
+const {
+    app,
+    BrowserWindow
+} = require('electron');
 const path = require('path');
 
 // Boot
@@ -66,7 +69,9 @@ function main() {
                 }
             }, SplashScreen ? Math.max(0, 1500 - (Date.now() - SplashShowTime)) : 0);
         } else {
-            const { dialog } = require('electron');
+            const {
+                dialog
+            } = require('electron');
 
             dialog.showMessageBox({
                 type: 'error',
@@ -77,7 +82,9 @@ function main() {
             app.quit();
         }
     }).catch(e => {
-        const { dialog } = require('electron');
+        const {
+            dialog
+        } = require('electron');
 
         dialog.showMessageBox({
             type: 'error',

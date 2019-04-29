@@ -1,5 +1,12 @@
 const path = require('path');
-const { app, BrowserWindow, Tray, Menu, ipcMain, shell } = require('electron');
+const {
+    app,
+    BrowserWindow,
+    Tray,
+    Menu,
+    ipcMain,
+    shell
+} = require('electron');
 const ModuleFolder = path.join(__dirname, "..", "mods");
 
 // Configuration
@@ -7,7 +14,9 @@ function LoadConfiguration() {
     try {
         return require('./config').loadConfig();
     } catch (_) {
-        const { dialog } = require('electron');
+        const {
+            dialog
+        } = require('electron');
 
         dialog.showMessageBox({
             type: 'error',
@@ -28,10 +37,14 @@ function SaveConfiguration(newConfig) {
 // Migration
 function Migration() {
     try {
-        const { ProxyMigration } = require('./migration');
+        const {
+            ProxyMigration
+        } = require('./migration');
         ProxyMigration();
     } catch (e) {
-        const { dialog } = require('electron');
+        const {
+            dialog
+        } = require('electron');
 
         dialog.showMessageBox({
             type: 'error',
@@ -45,14 +58,23 @@ function Migration() {
 
 // Installed mod management
 const AvailableModuleListUrl = "https://raw.githubusercontent.com/tera-toolbox/tera-mods/beta/modulelist.json";
-const { listModuleInfos, installModule, uninstallModule, toggleAutoUpdate, toggleLoad } = require('tera-mod-management');
+const {
+    listModuleInfos,
+    installModule,
+    uninstallModule,
+    toggleAutoUpdate,
+    toggleLoad
+} = require('tera-mod-management');
 
 let CachedAvailableModuleList = null;
 async function getInstallableMods(forceRefresh = false) {
     // (Re)download list of all available modules if required
     if (!CachedAvailableModuleList || forceRefresh) {
         const request = require('request-promise-native');
-        CachedAvailableModuleList = await request({ url: AvailableModuleListUrl, json: true });
+        CachedAvailableModuleList = await request({
+            url: AvailableModuleListUrl,
+            json: true
+        });
     }
 
     // Filter out already installed mods
@@ -63,6 +85,7 @@ async function getInstallableMods(forceRefresh = false) {
 // Proxy Main
 let proxy = null;
 let proxyRunning = false;
+
 function _StartProxy(ModuleFolder, ProxyConfig) {
     if (proxy || proxyRunning)
         return false;
@@ -282,12 +305,14 @@ class TeraProxyGUI {
 
         this.window = new BrowserWindow({
             title: 'TERA Toolbox',
-            width: 1215,
-            height: 675,
+            minWidth: 1002,
+            minHeight: 605,
+            width: 1002,
+            height: 605,
             icon: guiIcon,
             frame: false,
             backgroundColor: '#292F33',
-            resizable: false,
+            resizable: true,
             webPreferences: {
                 nodeIntegration: true,
                 devTools: false
@@ -297,7 +322,10 @@ class TeraProxyGUI {
         //this.window.webContents.openDevTools();
 
         //this.window.on('minimize', () => { this.window.hide(); });
-        this.window.on('closed', () => { StopProxy(); this.window = null; });
+        this.window.on('closed', () => {
+            StopProxy();
+            this.window = null;
+        });
 
         // Redirect console to built-in one
         const nodeConsole = require('console');
@@ -313,14 +341,16 @@ class TeraProxyGUI {
         // Initialize tray icon
         this.tray = new Tray(guiIcon);
         this.tray.setToolTip('TERA Toolbox');
-        this.tray.setContextMenu(Menu.buildFromTemplate([
-            {
-                label: 'Quit',
-                click: () => { app.exit(); }
+        this.tray.setContextMenu(Menu.buildFromTemplate([{
+            label: 'Quit',
+            click: () => {
+                app.exit();
             }
-        ]));
+        }]));
 
-        this.tray.on('click', () => { this.window.isVisible() ? this.window.hide() : this.window.show(); });
+        this.tray.on('click', () => {
+            this.window.isVisible() ? this.window.hide() : this.window.show();
+        });
     }
 
     hide() {
@@ -373,7 +403,9 @@ process.on('warning', (warning) => {
 });
 
 // Main
-const { initGlobalSettings } = require('./utils');
+const {
+    initGlobalSettings
+} = require('./utils');
 initGlobalSettings(false);
 
 // Enforce single instance of GUI
@@ -406,4 +438,3 @@ app.on('window-all-closed', () => {
 app.on('activate', () => {
     gui.show();
 });
-
