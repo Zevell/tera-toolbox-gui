@@ -72,9 +72,9 @@ body {
     background-color: transparent;
 }
 
-    #minimize-btn:focus {
-        outline: 0;
-    }
+#minimize-btn:focus {
+    outline: 0;
+}
 
 #close-btn {
     font-size: 20px;
@@ -87,9 +87,9 @@ body {
     background-color: transparent;
 }
 
-    #close-btn:focus {
-        outline: 0;
-    }
+#close-btn:focus {
+    outline: 0;
+}
 
 /********
  * MAIN *
@@ -104,13 +104,13 @@ ul.tabs {
     margin-right: 16px
 }
 
-    ul.tabs li {
-        display: inline-block;
-        padding: 8px 16px;
-        border-radius: 8px 8px 0 0;
-        cursor: pointer;
-        user-select: none
-    }
+ul.tabs li {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    user-select: none
+}
 
 .tab-content {
     display: none;
@@ -122,9 +122,9 @@ ul.tabs {
     overflow-y: auto;
 }
 
-    .tab-content.current {
-        display: inherit
-    }
+.tab-content.current {
+    display: inherit
+}
 
 .loading {
     display: flex;
@@ -132,18 +132,18 @@ ul.tabs {
     justify-content: center;
 }
 
-    .loading.icon {
-        width: 50px;
-        height: 50px;
-        border: none;
-        margin-top: 250px;
-    }
+.loading.icon {
+    width: 50px;
+    height: 50px;
+    border: none;
+    margin-top: 250px;
+}
 
-    .loading.text {
-        font-size: 28px;
-        line-height: 50px;
-        margin-top: 250px;
-    }
+.loading.text {
+    font-size: 28px;
+    line-height: 50px;
+    margin-top: 250px;
+}
 
 /*********
  * PROXY *
@@ -157,6 +157,14 @@ ul.tabs {
     float: right;
     text-align: center;
     width: 180px
+}
+
+/**********
+ * SIMPLE *
+ **********/
+
+#simple_view {
+    background: url("https://static.zerochan.net/Elin.full.1070230.jpg");
 }
 
 /********
@@ -180,9 +188,9 @@ ul.tabs {
     background-color: transparent;
 }
 
-    #clear-logs:focus {
-        outline: 0;
-    }
+#clear-logs:focus {
+    outline: 0;
+}
 
 .log-contents {
     word-break: break-all;
@@ -215,106 +223,106 @@ ul.tabs {
     margin-top: 2px;
 }
 
-    .moduleHeader.name {
-        background: inherit;
-        width: 70%;
-        text-align: left;
-        font-size: 16px;
-        font-weight: bold;
-        float: left;
-        border: none;
-        padding-left: 5px;
-    }
+.moduleHeader.name {
+    background: inherit;
+    width: 70%;
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+    float: left;
+    border: none;
+    padding-left: 5px;
+}
 
-        .moduleHeader.name:hover {
-            background: inherit;
-        }
+.moduleHeader.name:hover {
+    background: inherit;
+}
 
-    .moduleHeader.author {
-        background: inherit;
-        width: 30%;
-        text-align: right;
-        float: right;
-        border: none;
-        padding-right: 5px;
-    }
+.moduleHeader.author {
+    background: inherit;
+    width: 30%;
+    text-align: right;
+    float: right;
+    border: none;
+    padding-right: 5px;
+}
 
-        .moduleHeader.author:hover {
-            background: inherit;
-        }
+.moduleHeader.author:hover {
+    background: inherit;
+}
 
 .moduleBody {
     display: none;
 }
 
-    .moduleBody.description {
-        display: inherit;
-        text-align: left;
-        border: inherit;
-        padding-left: 5px;
-        padding-right: 50px;
-        float: left;
-        overflow: auto;
-        width: calc(100% - 100px);
-    }
+.moduleBody.description {
+    display: inherit;
+    text-align: left;
+    border: inherit;
+    padding-left: 5px;
+    padding-right: 50px;
+    float: left;
+    overflow: auto;
+    width: calc(100% - 100px);
+}
 
-    .moduleBody.buttons {
-        display: inherit;
-        text-align: right;
-        float: right;
-        border: inherit;
-        padding-right: 5px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        margin-right: 5px;
-        vertical-align: middle;
-    }
+.moduleBody.buttons {
+    display: inherit;
+    text-align: right;
+    float: right;
+    border: inherit;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
 
-        .moduleBody.buttons.donate {
-            width: 28px;
-            height: 28px;
-            border: none;
-        }
+.moduleBody.buttons.donate {
+    width: 28px;
+    height: 28px;
+    border: none;
+}
 
-        .moduleBody.buttons.info {
-            width: 28px;
-            height: 28px;
-            border: none;
-            margin-top: 2px;
-        }
+.moduleBody.buttons.info {
+    width: 28px;
+    height: 28px;
+    border: none;
+    margin-top: 2px;
+}
 
-        .moduleBody.buttons.uninstall {
-            width: 28px;
-            height: 28px;
-            border: none;
-            margin-left: 10px;
-        }
+.moduleBody.buttons.uninstall {
+    width: 28px;
+    height: 28px;
+    border: none;
+    margin-left: 10px;
+}
 
-        .moduleBody.buttons.loadEnabled {
-            width: 28px;
-            height: 28px;
-            border: none;
-        }
+.moduleBody.buttons.loadEnabled {
+    width: 28px;
+    height: 28px;
+    border: none;
+}
 
-        .moduleBody.buttons.loadDisabled {
-            width: 28px;
-            height: 28px;
-            border: none;
-        }
+.moduleBody.buttons.loadDisabled {
+    width: 28px;
+    height: 28px;
+    border: none;
+}
 
-        .moduleBody.buttons.updateEnabled {
-            width: 28px;
-            height: 28px;
-            border: none;
-            margin-left: 10px;
-        }
+.moduleBody.buttons.updateEnabled {
+    width: 28px;
+    height: 28px;
+    border: none;
+    margin-left: 10px;
+}
 
-        .moduleBody.buttons.updateDisabled {
-            width: 28px;
-            height: 28px;
-            border: none;
-            margin-left: 10px;
-        }
+.moduleBody.buttons.updateDisabled {
+    width: 28px;
+    height: 28px;
+    border: none;
+    margin-left: 10px;
+}
 
 /***********************
  * INSTALLABLE MODULES *
@@ -326,21 +334,21 @@ ul.tabs {
     vertical-align: middle;
 }
 
-    .installableModulesFilters > label {
-        padding-right: 20px;
-    }
+.installableModulesFilters>label {
+    padding-right: 20px;
+}
 
-    .installableModulesFilters > label > input[type=checkbox] {
-        position: relative;
-        top: 2px;
-        margin-right: 3px;
-    }
+.installableModulesFilters>label>input[type=checkbox] {
+    position: relative;
+    top: 2px;
+    margin-right: 3px;
+}
 
-    .installableModulesFilters > label > input[type=text] {
-        border: 1px solid;
-        border-radius: 3px;
-        padding: 2px;
-    }
+.installableModulesFilters>label>input[type=text] {
+    border: 1px solid;
+    border-radius: 3px;
+    padding: 2px;
+}
 
 .installableModulesList {
     display: block;
@@ -355,57 +363,57 @@ ul.tabs {
     margin-top: 2px;
 }
 
-    .installableModuleHeader.name {
-        background: inherit;
-        width: 70%;
-        text-align: left;
-        font-size: 16px;
-        font-weight: bold;
-        float: left;
-        border: none;
-        padding-left: 5px;
-    }
+.installableModuleHeader.name {
+    background: inherit;
+    width: 70%;
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+    float: left;
+    border: none;
+    padding-left: 5px;
+}
 
-    .installableModuleHeader.author {
-        background: inherit;
-        width: 30%;
-        text-align: right;
-        float: right;
-        border: none;
-        padding-right: 5px;
-    }
+.installableModuleHeader.author {
+    background: inherit;
+    width: 30%;
+    text-align: right;
+    float: right;
+    border: none;
+    padding-right: 5px;
+}
 
 .installableModuleBody {
     display: block;
 }
 
-    .installableModuleBody.description {
-        display: inherit;
-        text-align: left;
-        border: inherit;
-        padding-left: 5px;
-        padding-right: 50px;
-        float: left;
-        overflow: auto;
-        width: calc(100% - 100px);
-    }
+.installableModuleBody.description {
+    display: inherit;
+    text-align: left;
+    border: inherit;
+    padding-left: 5px;
+    padding-right: 50px;
+    float: left;
+    overflow: auto;
+    width: calc(100% - 100px);
+}
 
-    .installableModuleBody.buttons {
-        display: inherit;
-        text-align: right;
-        float: right;
-        border: inherit;
-        padding-right: 5px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        vertical-align: middle;
-    }
+.installableModuleBody.buttons {
+    display: inherit;
+    text-align: right;
+    float: right;
+    border: inherit;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    vertical-align: middle;
+}
 
-        .installableModuleBody.buttons.install {
-            width: 28px;
-            height: 28px;
-            border: none;
-        }
+.installableModuleBody.buttons.install {
+    width: 28px;
+    height: 28px;
+    border: none;
+}
 
 
 /*************
@@ -432,21 +440,21 @@ ul.tabs {
     padding-top: 110px;
 }
 
-#settings > div {
+#settings>div {
     padding: 4px 8px;
     margin: 4px 340px 4px 340px;
     border-radius: 4px;
 }
 
-    #settings > div > a {
-        cursor: default;
-        user-select: none;
-        width: 350px;
-        display: inline-block;
-        text-align: left;
-        margin-right: 8px;
-        font-size: 20px;
-    }
+#settings>div>a {
+    cursor: default;
+    user-select: none;
+    width: 350px;
+    display: inline-block;
+    text-align: left;
+    margin-right: 8px;
+    font-size: 20px;
+}
 
 .theme {
     cursor: pointer;
@@ -458,17 +466,17 @@ ul.tabs {
     margin-bottom: -6px;
 }
 
-    .theme.black {
-        background-color: #292F33
-    }
+.theme.black {
+    background-color: #292F33
+}
 
-    .theme.white {
-        background-color: #E1E8ED
-    }
+.theme.white {
+    background-color: #E1E8ED
+}
 
-    .theme.pink {
-        background-color: #F0438C
-    }
+.theme.pink {
+    background-color: #F0438C
+}
 
 /***********
  * CREDITS *
@@ -480,12 +488,12 @@ ul.tabs {
     justify-content: center;
 }
 
-    .credits.text {
-        font-size: 28px;
-        line-height: 50px;
-        margin-top: 150px;
-        text-align: center;
-    }
+.credits.text {
+    font-size: 28px;
+    line-height: 50px;
+    margin-top: 150px;
+    text-align: center;
+}
 
 /*************
  * MODAL BOX *
