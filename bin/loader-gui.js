@@ -305,9 +305,9 @@ class TeraProxyGUI {
 
         this.window = new BrowserWindow({
             title: 'TERA Toolbox',
-            minWidth: 1002,
+            minWidth: 900,
             minHeight: 605,
-            width: 1002,
+            width: 900,
             height: 605,
             icon: guiIcon,
             frame: false,
@@ -315,11 +315,11 @@ class TeraProxyGUI {
             resizable: true,
             webPreferences: {
                 nodeIntegration: true,
-                devTools: false
+                //devTools: false
             }
         });
         this.window.loadFile(path.join(guiRoot, 'main.html'));
-        //this.window.webContents.openDevTools();
+        this.window.webContents.openDevTools();
 
         //this.window.on('minimize', () => { this.window.hide(); });
         this.window.on('closed', () => {

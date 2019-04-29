@@ -2,10 +2,11 @@
  * GENERAL *
  ***********/
 
+
 html {
     box-sizing: border-box;
-    min-height: 605px;
-    min-width: 1002px;
+    height: 100%;
+    width: 100%;
 }
 
 * {
@@ -15,12 +16,12 @@ html {
 }
 
 body {
-    -webkit-app-region: drag;
     user-select: none;
     font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
     font-size: 14px;
     line-height: 1.42857143;
     min-height: 100%;
+    min-width: 100%;
     overflow: hidden;
     display: flex;
 }
@@ -34,10 +35,11 @@ body {
  *************/
 
 #title-bar {
+    -webkit-app-region: drag;
     position: fixed;
     height: 32px;
-    top: 0px;
-    left: 0px;
+    top: 3px;
+    left: 5px;
     right: 0px
 }
 
@@ -97,9 +99,9 @@ body {
  ********/
 
 .container {
-    margin: 32px 8px 8px 8px;
+    margin: 37px 8px 8px 8px;
     min-height: 100%;
-    min-width: 100%;
+    min-width: 98%;
 }
 
 ul.tabs {
@@ -120,9 +122,8 @@ ul.tabs li {
     padding: 8px;
     border-radius: 8px;
     /* todo? edit width&height */
-    min-width: 100%;
-    min-height: 100%;
-    height: 100%;
+    min-width: 93%;
+    min-height: 93%;
     overflow-y: auto;
 }
 
@@ -160,7 +161,7 @@ ul.tabs li {
     padding: 8px 16px;
     float: right;
     text-align: center;
-    width: 180px
+    width: 100px
 }
 
 /**********
@@ -202,7 +203,6 @@ ul.tabs li {
     z-index: 99999;
     min-height: 100%;
     min-width: 100%;
-    width: 100%;
     overflow: scroll;
     overflow-x: hidden;
     font-family: Consolas, monaco, monospace;
@@ -357,6 +357,7 @@ ul.tabs li {
 
 .installableModulesList {
     display: block;
+    height: 605px;
 }
 
 .installableModuleHeader {
@@ -442,7 +443,7 @@ ul.tabs li {
  **********/
 
 #settings {
-    padding-top: 110px;
+    padding-top: 5%;
 }
 
 #settings>div {
@@ -459,6 +460,7 @@ ul.tabs li {
     text-align: left;
     margin-right: 8px;
     font-size: 20px;
+    height: 100%;
 }
 
 .theme {
