@@ -1,4 +1,8 @@
-const { remote, ipcRenderer, shell } = require('electron');
+const {
+    remote,
+    ipcRenderer,
+    shell
+} = require('electron');
 const Themes = ['black', 'white', 'pink'];
 
 function displayName(modInfo) {
@@ -291,8 +295,7 @@ jQuery(($) => {
                         ${(!modInfo.isCoreModule && modInfo.compatibility === 'compatible') ? `<a href="#" id="${updateId}" class="moduleBody buttons update${modInfo.disableAutoUpdate ? 'Disabled' : 'Enabled'}"></a>` : ''}
                         ${(!modInfo.isCoreModule && modInfo.compatibility === 'compatible') ? `<a href="#" id="${enabledId}" class="moduleBody buttons load${modInfo.disabled ? 'Disabled' : 'Enabled'}"></a>` : ''}
                     </div>
-                </div>`
-            );
+                </div>`);
 
             $(`#${donationId}`).on('click', (event) => {
                 event.preventDefault();
@@ -413,8 +416,7 @@ jQuery(($) => {
                     <div class="installableModuleBody buttons">
                         <a href="#" id="${installId}" class="installableModuleBody buttons install"></a>
                     </div>
-                </div>`
-            );
+                </div>`);
 
             $(`#${installId}`).on('click', (event) => {
                 event.preventDefault();
@@ -470,6 +472,12 @@ jQuery(($) => {
             shell.openExternal(remote.getGlobal('TeraProxy').SupportUrl);
         },
     });
+
+    // --------------------------------------------------------------------
+    // ----------------------------- HELP TEXT -----------------------------
+    // --------------------------------------------------------------------
+
+
 
     // --------------------------------------------------------------------
     // -------------------------- MODS FOLDER TAB -------------------------

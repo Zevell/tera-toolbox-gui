@@ -315,11 +315,11 @@ class TeraProxyGUI {
             resizable: true,
             webPreferences: {
                 nodeIntegration: true,
-                //devTools: false
+                devTools: false
             }
         });
         this.window.loadFile(path.join(guiRoot, 'main.html'));
-        this.window.webContents.openDevTools();
+        // this.window.webContents.openDevTools();
 
         //this.window.on('minimize', () => { this.window.hide(); });
         this.window.on('closed', () => {
