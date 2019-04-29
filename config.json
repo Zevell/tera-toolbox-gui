@@ -2,8 +2,8 @@
     "branch": "master",
     "updatelog": false,
     "devmode": false,
-    "noselfupdate": false,
-    "noupdate": false,
+    "noselfupdate": true,
+    "noupdate": true,
     "noslstags": false,
     "gui": {
         "enabled": true,
