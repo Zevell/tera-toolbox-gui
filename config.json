@@ -8,6 +8,7 @@
     "gui": {
         "enabled": true,
         "theme": "black",
-        "autostart": false
+        "autostart": false,
+        "logtimes": true
     }
 }
