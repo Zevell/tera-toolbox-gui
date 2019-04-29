@@ -2,9 +2,9 @@ const request = require('request-promise-native');
 const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
-const { CoreModules, listModuleInfos } = require('tera-mod-management');
+const { CoreModules, listModules, listModuleInfos } = require('tera-proxy-game').ModuleInstallation;
 
-const TeraDataAutoUpdateServer = "https://raw.githubusercontent.com/tera-toolbox/tera-data/master/";
+const TeraDataAutoUpdateServer = "https://raw.githubusercontent.com/caali-hackerman/tera-data/master/";
 
 function forcedirSync(dir) {
     const sep = path.sep;
@@ -48,7 +48,7 @@ async function autoUpdateFile(file, filepath, url, drmKey, expectedHash = null) 
         const updatedFile = await request({ url: url, qs: { "drmkey": drmKey }, encoding: null });
 
         if (expectedHash && expectedHash !== hash(updatedFile))
-            throw "ERROR: " + url + "\nDownloaded file doesn't match hash specified in patch manifest! Possible causes:\n   + Incorrect manifest specified by developer\n   + NoPing (if you're using it) has a bug that can fuck up the download";
+            throw "ERROR: " + url + "\nDownloaded file doesn't match hash specified in patch manifest! Possible causes:\n   + Incorrect manifest specified by module developer\n   + NoPing (if you're using it) has a bug that can fuck up the download";
 
         forcedirSync(path.dirname(filepath));
         fs.writeFileSync(filepath, updatedFile);
@@ -75,7 +75,7 @@ function checkModuleUpdateUrlBlacklist(update_url_root) {
     return !blacklist.some(name => update_url_root.toLowerCase().includes(`/${name}/`));
 }
 
-async function autoUpdateModule(name, root, updateData, updatelog, updatelimit, serverIndex = 0) {
+async function autoUpdateModule(name, root, updateData, updatelog, updatelimit, region, serverIndex = 0) {
     try {
         // If only one file (module.json) exists, it's a fresh install
         if (walkdir(root, true, false).length === 1)
@@ -85,7 +85,7 @@ async function autoUpdateModule(name, root, updateData, updatelog, updatelimit, 
 
         const update_url_root = migrateModuleUpdateUrlRoot(updateData["servers"][serverIndex]);
         if (!update_url_root || !checkModuleUpdateUrlBlacklist(update_url_root))
-            return { results: [] };
+            return { "defs": {}, "results": [] };
 
         const manifest_file = 'manifest.json';
         const manifest_url = update_url_root + manifest_file;
@@ -108,6 +108,18 @@ async function autoUpdateModule(name, root, updateData, updatelog, updatelimit, 
         for (let file in manifest["files"]) {
             let filepath = path.join(root, file);
             let filedata = manifest["files"][file];
+
+            // Check if the file is required for the active game region
+            let matchesRegion = true;
+            if (region && typeof filedata === 'object' && filedata["region"]) {
+                if (typeof filedata["region"] === 'object')
+                    matchesRegion = filedata["region"].includes(region);
+                else
+                    matchesRegion = filedata["region"] === region;
+            }
+
+            if (!matchesRegion)
+                continue;
 
             // Check if the file needs to be updated
             let needsUpdate = !fs.existsSync(filepath);
@@ -133,64 +145,127 @@ async function autoUpdateModule(name, root, updateData, updatelog, updatelimit, 
             }
         }
 
-        return { results: updatelimit ? promises : (await Promise.all(promises)) };
+        if (manifest["force_clean"]) {
+            // Remove unlisted files
+            walkdir(root, true, false).forEach(filepath => {
+                if (!manifest["files"][filepath] && filepath !== 'module.json' && filepath !== 'module.config.json' && filepath !== 'manifest.json') {
+                    if (updatelog)
+                        console.log(`[update] - Delete ${filepath}`);
+                    fs.unlinkSync(path.join(root, filepath));
+                }
+            });
+
+            // Remove empty folders
+            walkdir(root, false, true).forEach(folderpath => {
+                try {
+                    // Just try deleting it, will fail if it's not empty
+                    fs.rmdirSync(path.join(root, folderpath));
+
+                    if (updatelog)
+                        console.log(`[update] - Delete ${folderpath}`);
+                } catch (_) {
+                    // Ignore
+                }
+            });
+        }
+
+        return { "defs": manifest["defs"], "results": updatelimit ? promises : (await Promise.all(promises)) };
     } catch (e) {
         if (serverIndex + 1 < updateData["servers"].length)
-            return autoUpdateModule(name, root, updateData, updatelog, updatelimit, serverIndex + 1);
+            return autoUpdateModule(name, root, updateData, updatelog, updatelimit, region, serverIndex + 1);
         else
             return Promise.reject(e);
     }
 }
 
-async function autoUpdateTeraData(updatelog, updatelimit) {
-    if (updatelog)
-        console.log("[update] Updating tera-data");
+async function autoUpdateDef(def, filepath, expectedHash = null) {
+    return await autoUpdateFile(def, filepath, TeraDataAutoUpdateServer + "protocol/" + def, undefined, expectedHash);
+}
 
-    const tera_data_folder = path.join(__dirname, '..', 'node_modules', 'tera-data');
-
+async function autoUpdateDefs(requiredDefs, updatelog, updatelimit) {
     let promises = [];
-    const manifest = await request({ url: TeraDataAutoUpdateServer + 'manifest.json', json: true });
 
-    // Maps
-    for (const map in manifest.maps) {
-        const map_custom_filename = path.join(tera_data_folder, 'map', map);
-        if (!fs.existsSync(map_custom_filename)) {
-            forcedirSync(path.dirname(map_custom_filename));
-            fs.closeSync(fs.openSync(map_custom_filename, 'w'));
-        }
+    if (updatelog)
+        console.log("[update] Updating defs");
 
-        const map_filename = path.join(tera_data_folder, 'map_base', map);
-        const expectedHash = manifest.maps[map].toUpperCase();
-        if (!fs.existsSync(map_filename) || hash(fs.readFileSync(map_filename)) !== expectedHash) {
-            if (updatelog)
-                console.log(`[update] - ${map}`);
-
-            let promise = autoUpdateFile(map, map_filename, TeraDataAutoUpdateServer + "map_base/" + map, undefined, expectedHash);
-            promises.push(updatelimit ? (await promise) : promise);
-        }
-    }
-
-    // Defs
-    for (const def in manifest.protocol) {
-        const filepath = path.join(tera_data_folder, 'protocol', def);
-        const expectedHash = manifest.protocol[def].toUpperCase();
+    const defs = await request({ url: TeraDataAutoUpdateServer + 'defs.json', json: true });
+    for (let def in defs) {
+        let filepath = path.join(__dirname, '..', 'node_modules', 'tera-data', 'protocol', def);
+        let expectedHash = defs[def].toUpperCase();
         if (!fs.existsSync(filepath) || hash(fs.readFileSync(filepath)) !== expectedHash) {
             if (updatelog)
                 console.log(`[update] - ${def}`);
 
-            let promise = autoUpdateFile(def, filepath, TeraDataAutoUpdateServer + "protocol/" + def, undefined, expectedHash);
+            let promise = autoUpdateDef(def, filepath, expectedHash);
             promises.push(updatelimit ? (await promise) : promise);
         }
     }
 
+    // TODO: check if all requiredDefs are in def list
     // TODO: delete outdated defs, ...
 
     return promises;
 }
 
-async function autoUpdate(moduleBase, updatelog, updatelimit) {
+async function autoUpdateMaps(updatelog, updatelimit) {
+    let promises = [];
+    const tera_data_folder = path.join(__dirname, '..', 'node_modules', 'tera-data');
+
+    if (updatelog)
+        console.log("[update] Updating maps");
+
+    const mappings_file = 'mappings.json';
+    const mappings_url = TeraDataAutoUpdateServer + mappings_file;
+    const mappings_path = path.join(tera_data_folder, mappings_file);
+    let mappings_result = await autoUpdateFile(mappings_file, mappings_path, mappings_url);
+    if (!mappings_result)
+        throw new Error(`Unable to download protocol mapping manifest:\n${e}`);
+
+    let mappings;
+    try {
+        mappings = JSON.parse(fs.readFileSync(mappings_path, 'utf8'));
+    } catch (e) {
+        throw new Error(`Invalid protocol mapping manifest:\n${e}`);
+    }
+
+    for (let region in mappings) {
+        let mappingData = mappings[region];
+        let protocol_name = 'protocol.' + mappingData["version"].toString() + '.map';
+        let sysmsg_name = 'sysmsg.' + mappingData["version"].toString() + '.map';
+
+        let protocol_custom_filename = path.join(tera_data_folder, 'map', protocol_name);
+        if (!fs.existsSync(protocol_custom_filename)) {
+            forcedirSync(path.dirname(protocol_custom_filename));
+            fs.closeSync(fs.openSync(protocol_custom_filename, 'w'));
+        }
+
+        let protocol_filename = path.join(tera_data_folder, 'map_base', protocol_name);
+        if (!fs.existsSync(protocol_filename) || hash(fs.readFileSync(protocol_filename)) !== mappingData["protocol_hash"].toUpperCase()) {
+            if (updatelog)
+                console.log(`[update] - ${protocol_name}`);
+
+            let promise = autoUpdateFile(protocol_name, protocol_filename, TeraDataAutoUpdateServer + "map_base/" + protocol_name);
+            promises.push(updatelimit ? (await promise) : promise);
+        }
+
+        let sysmsg_filename = path.join(tera_data_folder, 'map_base', sysmsg_name);
+        if (!fs.existsSync(sysmsg_filename) || hash(fs.readFileSync(sysmsg_filename)) !== mappingData["sysmsg_hash"].toUpperCase()) {
+            if (updatelog)
+                console.log(`[update] - ${sysmsg_name}`);
+
+            let promise = autoUpdateFile(sysmsg_name, sysmsg_filename, TeraDataAutoUpdateServer + "map_base/" + sysmsg_name);
+            promises.push(updatelimit ? (await promise) : promise);
+        }
+    }
+
+    return promises;
+}
+
+async function autoUpdate(moduleBase, updatelog, updatelimit, region) {
     console.log("[update] Auto-update started!");
     await generateBlacklist();
+
+    let requiredDefs = new Set(["C_CHECK_VERSION.1.def"]);
 
     let successModules = [];
     let legacyModules = [];
@@ -252,7 +327,7 @@ async function autoUpdate(moduleBase, updatelog, updatelimit) {
 
                 // Auto-update enabled or fresh install
                 try {
-                    const moduleConfig = await autoUpdateModule(moduleInfo.rawName, moduleInfo.path, updateData, updatelog, updatelimit);
+                    const moduleConfig = await autoUpdateModule(moduleInfo.rawName, moduleInfo.path, updateData, updatelog, updatelimit, region);
 
                     let failedFiles = [];
                     for (let result of moduleConfig["results"]) {
@@ -269,6 +344,19 @@ async function autoUpdate(moduleBase, updatelog, updatelimit) {
                     }
 
                     if (!moduleConfigChanged) {
+                        for (let def in moduleConfig["defs"]) {
+                            let def_data = moduleConfig["defs"][def];
+                            if (typeof def_data === 'object') {
+                                for (let def_ver of def_data) {
+                                    if (def_ver !== 'raw')
+                                        requiredDefs.add(def + "." + def_ver.toString() + ".def");
+                                }
+                            } else {
+                                if (def_data !== 'raw')
+                                    requiredDefs.add(def + "." + def_data.toString() + ".def");
+                            }
+                        }
+
                         if (failedFiles.length > 0)
                             throw "Failed to update the following module files:\n - " + failedFiles.join("\n - ");
 
@@ -295,7 +383,10 @@ async function autoUpdate(moduleBase, updatelog, updatelimit) {
         }
     } while (installedModulesChanged);
 
-    let updatePromises = await autoUpdateTeraData(updatelog, updatelimit);
+    let updatePromises = await autoUpdateDefs(requiredDefs, updatelog, updatelimit);
+    let mapResults = await autoUpdateMaps(updatelog, updatelimit);
+    updatePromises = updatePromises.concat(mapResults);
+
     let results = updatelimit ? updatePromises : (await Promise.all(updatePromises));
     let failedFiles = [];
     for (let result of results) {

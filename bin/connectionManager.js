@@ -30,19 +30,18 @@ class ConnectionManager {
         this.activeConnections.clear();
     }
 
-    start(id, target, socket, region, regionShort, platform, majorPatch, minorPatch, protocolVersion, sysmsg, clientInterfaceConnection) {
+    start(id, target, socket, region, regionShort, platform, majorPatch, minorPatch, clientInterfaceConnection) {
         socket.setNoDelay(true);
 
         const connection = new Connection(this.moduleFolder, {
-            serverId: id,
-            region: region,
-            regionShort: regionShort,
-            majorPatch: majorPatch,
-            minorPatch: minorPatch,
-            protocol: protocolVersion,
-            platform: platform,
-            sysmsg: sysmsg,
-            clientInterface: clientInterfaceConnection,
+            "serverId": id,
+            "region": region,
+            "regionShort": regionShort,
+            "majorPatch": majorPatch,
+            "minorPatch": minorPatch,
+            "console": platform === "console",
+            "classic": platform === "classic",
+            "clientInterface": clientInterfaceConnection,
         });
 
         const client = new RealClient(connection, socket);
