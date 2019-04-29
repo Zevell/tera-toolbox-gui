@@ -1,0 +1,8 @@
+{
+    "branch": "master",
+    "updatelog": false,
+    "devmode": false,
+    "noselfupdate": false,
+    "noupdate": false,
+    "noslstags": false
+}
