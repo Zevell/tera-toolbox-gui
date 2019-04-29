@@ -5,7 +5,7 @@
         "autostart": false,
         "enabled": true,
         "logtimes": true,
-        "theme": "toolbox"
+        "theme": "black"
     },
     "noselfupdate": true,
     "noslstags": false,

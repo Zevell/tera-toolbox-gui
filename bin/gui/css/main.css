@@ -496,14 +496,18 @@ ul.tabs li {
  **********/
 
 #settings {
-    padding-top: 5%;
+    padding-top: 8%;
 }
 
 #settings>div {
     padding: 4px 8px;
-    margin: 4px 21% 4px 21%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4px;
+    margin-bottom: 4px;
     border-radius: 4px;
-    /* height: 20%; */
+    align-content: center;
+    width: 500px;
 }
 
 #settings>div>a {
@@ -555,7 +559,7 @@ ul.tabs li {
 .credits.text {
     font-size: 28px;
     line-height: 50px;
-    margin-top: 150px;
+    margin-top: 100px;
     text-align: center;
 }
 
