@@ -3,15 +3,15 @@
  ***********/
 
 body {
-    background: #121212;
+    background: rgb(153, 93, 243);
     /* Old browsers */
-    background: -moz-linear-gradient(45deg, #121212 0%, #1a1a1a 50%, #171717 51%, #242424 100%);
+    background: -moz-linear-gradient(45deg, rgba(153, 93, 243, 1) 0%, rgba(143, 77, 241, 1) 50%, rgba(131, 58, 240, 1) 51%, rgba(146, 82, 242, 1) 100%);
     /* FF3.6-15 */
-    background: -webkit-linear-gradient(45deg, #121212 0%, #1a1a1a 50%, #171717 51%, #242424 100%);
+    background: -webkit-linear-gradient(45deg, rgba(153, 93, 243, 1) 0%, rgba(143, 77, 241, 1) 50%, rgba(131, 58, 240, 1) 51%, rgba(146, 82, 242, 1) 100%);
     /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(45deg, #121212 0%, #1a1a1a 50%, #171717 51%, #242424 100%);
+    background: linear-gradient(45deg, rgba(153, 93, 243, 1) 0%, rgba(143, 77, 241, 1) 50%, rgba(131, 58, 240, 1) 51%, rgba(146, 82, 242, 1) 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#121212', endColorstr='#242424', GradientType=1);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#995df3', endColorstr='#9252f2', GradientType=1);
     /* IE6-9 fallback on horizontal gradient */
     color: #BBB;
 }
@@ -42,20 +42,20 @@ body {
  ********/
 
 ul.tabs li {
-    background-color: #292F33;
+    background-color: #4900a8;
 }
 
 ul.tabs li:hover {
-    background-color: #393C40;
+    background-color: #6206db;
 }
 
 ul.tabs li.current {
-    background: #222426;
+    background: #6206db;
 }
 
 .tab-content {
-    background: #14171A;
-    border: solid 4px #222426;
+    background: #100025;
+    border: solid 4px #6206db;
 }
 
 .loading {}
@@ -71,11 +71,11 @@ ul.tabs li.current {
  *********/
 
 #startproxy {
-    background: #222426;
+    background: #4900a8;
 }
 
 #startproxy:hover {
-    background: #393C40;
+    background: #6206db;
 }
 
 /********
@@ -83,8 +83,8 @@ ul.tabs li.current {
  ********/
 
 .log-contents {
-    background-color: #222426;
-    color: #BBB;
+    background-color: #100025;
+    color: rgb(202, 202, 202);
 }
 
 #clear-logs {
@@ -100,7 +100,7 @@ ul.tabs li.current {
  ***********/
 
 ul.ModulesList li {
-    background-color: #222426;
+    background-color: #100025;
 }
 
 #modInfo li {
@@ -108,20 +108,20 @@ ul.ModulesList li {
 }
 
 .moduleHeader {
-    border-color: #14171A;
-    background-color: #222426;
+    border-color: #100025;
+    background-color: #4900a8;
 }
 
 .moduleHeader:hover {
-    background-color: #292F33;
+    background-color: #6206db;
 }
 
 .moduleHeader.active {
-    background-color: #393C40;
+    background-color: #6206db;
 }
 
 .moduleHeader.active:hover {
-    background-color: #393C40;
+    background-color: #6206db;
 }
 
 .moduleBody {}
@@ -237,11 +237,11 @@ ul.ModulesList li {
  * SCROLLBAR *
  *************/
 ::-webkit-scrollbar-track {
-    background: #222426;
+    background: #4900a8;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #393C40;
+    background: #6206db;
 }
 
 /**********
@@ -249,7 +249,7 @@ ul.ModulesList li {
  **********/
 
 #settings>div {
-    background-color: #222426;
+    background-color: #6206db;
 }
 
 /***********

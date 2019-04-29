@@ -3,8 +3,17 @@
  ***********/
 
 body {
-	background-color: #E1E8ED;
-	color: #292F33;
+    background: rgb(249, 249, 249);
+    /* Old browsers */
+    background: -moz-linear-gradient(45deg, rgba(249, 249, 249, 1) 0%, rgba(241, 241, 241, 1) 50%, rgba(233, 233, 233, 1) 51%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, rgba(249, 249, 249, 1) 0%, rgba(241, 241, 241, 1) 50%, rgba(233, 233, 233, 1) 51%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, rgba(249, 249, 249, 1) 0%, rgba(241, 241, 241, 1) 50%, rgba(233, 233, 233, 1) 51%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9', GradientType=1);
+    /* IE6-9 fallback on horizontal gradient */
+    color: #292F33;
 }
 
 /*************
@@ -15,17 +24,17 @@ body {
     color: #292F33;
 }
 
-    #minimize-btn:hover {
-        color: #E81C4F;
-    }
-
-#close-btn {
-	color: #292F33;
+#minimize-btn:hover {
+    color: #E81C4F;
 }
 
-    #close-btn:hover {
-        color: #E81C4F;
-    }
+#close-btn {
+    color: #292F33;
+}
+
+#close-btn:hover {
+    color: #E81C4F;
+}
 
 
 /********
@@ -33,42 +42,41 @@ body {
  ********/
 
 ul.tabs li {
-	background-color: #E1E8ED;
+    background-color: #E1E8ED;
 }
 
-    ul.tabs li:hover {
-        background-color: #D0D2D4;
-    }
+ul.tabs li:hover {
+    background-color: #D0D2D4;
+}
 
-    ul.tabs li.current {
-        background: #F5F8FA;
-    }
+ul.tabs li.current {
+    background: #F5F8FA;
+}
 
 .tab-content {
-	background: #FFF;
-	border: solid 4px #F5F8FA;
+    background: #FFF;
+    border: solid 4px #F5F8FA;
 }
 
-.loading {
-}
+.loading {}
 
-    .loading.icon {
-        background: url(../../icons/loadingBlack.svg);
-        background-repeat: no-repeat;
-        background-size: 50px;
-    }
+.loading.icon {
+    background: url(../../icons/loadingBlack.svg);
+    background-repeat: no-repeat;
+    background-size: 50px;
+}
 
 /*********
  * PROXY *
  *********/
 
 #startproxy {
-	background: #F5F8FA;
+    background: #F5F8FA;
 }
 
-    #startproxy:hover {
-        background: #D0D2D4;
-    }
+#startproxy:hover {
+    background: #D0D2D4;
+}
 
 /********
  * LOGS *
@@ -83,9 +91,9 @@ ul.tabs li {
     color: #292F33;
 }
 
-    #clear-logs:hover {
-        color: #E81C4F;
-    }
+#clear-logs:hover {
+    color: #E81C4F;
+}
 
 /***********
  * MODULES *
@@ -101,155 +109,147 @@ ul.ModulesList li {
 
 .moduleHeader {
     border-color: #FFF;
-    background-color: #F5F8FA;
+    background-color: #e9e9e9;
 }
 
-    .moduleHeader:hover {
-        background-color: #E1E8ED;
-    }
-
-    .moduleHeader.active {
-        background-color: #D0D2D4;
-    }
-
-        .moduleHeader.active:hover {
-            background-color: #D0D2D4;
-        }
-
-.moduleBody {
-
+.moduleHeader:hover {
+    background-color: #E1E8ED;
 }
 
-    .moduleBody.buttons {
+.moduleHeader.active {
+    background-color: #D0D2D4;
+}
 
-    }
+.moduleHeader.active:hover {
+    background-color: #D0D2D4;
+}
 
-        .moduleBody.buttons.donate {
-            background: url(../../icons/donateBlack.png);
-            background-repeat: no-repeat;
-            background-size: 28px;
-        }
+.moduleBody {}
 
-            .moduleBody.buttons.donate:hover {
-                background-size: 30px;
-            }
+.moduleBody.buttons {}
 
-        .moduleBody.buttons.info {
-            background: url(../../icons/infoBlack.svg);
-            background-repeat: no-repeat;
-            background-size: 25px;
-        }
+.moduleBody.buttons.donate {
+    background: url(../../icons/donateBlack.png);
+    background-repeat: no-repeat;
+    background-size: 28px;
+}
 
-            .moduleBody.buttons.info:hover {
-                background-size: 27px;
-            }
+.moduleBody.buttons.donate:hover {
+    background-size: 30px;
+}
 
-        .moduleBody.buttons.uninstall {
-            background: url(../../icons/deleteBlack.png);
-            background-repeat: no-repeat;
-            background-size: 28px;
-        }
+.moduleBody.buttons.info {
+    background: url(../../icons/infoBlack.svg);
+    background-repeat: no-repeat;
+    background-size: 25px;
+}
 
-            .moduleBody.buttons.uninstall:hover {
-                background-size: 30px;
-            }
+.moduleBody.buttons.info:hover {
+    background-size: 27px;
+}
 
-        .moduleBody.buttons.updateEnabled {
-            background: url(../../icons/updateEnabledBlack.svg);
-            background-repeat: no-repeat;
-            background-size: 26px;
-        }
+.moduleBody.buttons.uninstall {
+    background: url(../../icons/deleteBlack.png);
+    background-repeat: no-repeat;
+    background-size: 28px;
+}
 
-            .moduleBody.buttons.updateEnabled:hover {
-                background-size: 28px;
-            }
+.moduleBody.buttons.uninstall:hover {
+    background-size: 30px;
+}
 
-        .moduleBody.buttons.updateDisabled {
-            background: url(../../icons/updateDisabledBlack.svg);
-            background-repeat: no-repeat;
-            background-size: 26px;
-        }
+.moduleBody.buttons.updateEnabled {
+    background: url(../../icons/updateEnabledBlack.svg);
+    background-repeat: no-repeat;
+    background-size: 26px;
+}
 
-            .moduleBody.buttons.updateDisabled:hover {
-                background-size: 28px;
-            }
+.moduleBody.buttons.updateEnabled:hover {
+    background-size: 28px;
+}
 
-        .moduleBody.buttons.loadEnabled {
-            background: url(../../icons/loadEnabledBlack.svg);
-            background-repeat: no-repeat;
-            background-size: 24px;
-            margin-top: 2px;
-        }
+.moduleBody.buttons.updateDisabled {
+    background: url(../../icons/updateDisabledBlack.svg);
+    background-repeat: no-repeat;
+    background-size: 26px;
+}
 
-            .moduleBody.buttons.loadEnabled:hover {
-                background-size: 26px;
-            }
+.moduleBody.buttons.updateDisabled:hover {
+    background-size: 28px;
+}
 
-        .moduleBody.buttons.loadDisabled {
-            background: url(../../icons/loadDisabledBlack.svg);
-            background-repeat: no-repeat;
-            background-size: 24px;
-            margin-top: 2px;
-        }
+.moduleBody.buttons.loadEnabled {
+    background: url(../../icons/loadEnabledBlack.svg);
+    background-repeat: no-repeat;
+    background-size: 24px;
+    margin-top: 2px;
+}
 
-            .moduleBody.buttons.loadDisabled:hover {
-                background-size: 26px;
-            }
+.moduleBody.buttons.loadEnabled:hover {
+    background-size: 26px;
+}
+
+.moduleBody.buttons.loadDisabled {
+    background: url(../../icons/loadDisabledBlack.svg);
+    background-repeat: no-repeat;
+    background-size: 24px;
+    margin-top: 2px;
+}
+
+.moduleBody.buttons.loadDisabled:hover {
+    background-size: 26px;
+}
 
 /***********************
  * INSTALLABLE MODULES *
  ***********************/
 
-        .installableModulesFilters > label > input[type=text] {
-            color: #292F33;
-            border-color: #D0D2D4;
-            background-color: #F5F8FA;
-        }
+.installableModulesFilters>label>input[type=text] {
+    color: #292F33;
+    border-color: #D0D2D4;
+    background-color: #F5F8FA;
+}
 
 .installableModuleHeader {
     border-color: #FFF;
     background-color: #F5F8FA;
 }
 
-    .installableModuleHeader:hover {
-        background-color: #E1E8ED;
-    }
-
-.installableModuleBody {
-
+.installableModuleHeader:hover {
+    background-color: #E1E8ED;
 }
 
-    .installableModuleBody.buttons {
+.installableModuleBody {}
 
-    }
+.installableModuleBody.buttons {}
 
-        .installableModuleBody.buttons.install {
-            background: url(../../icons/installBlack.svg);
-            background-repeat: no-repeat;
-            background-size: 28px;
-        }
+.installableModuleBody.buttons.install {
+    background: url(../../icons/installBlack.svg);
+    background-repeat: no-repeat;
+    background-size: 28px;
+}
 
-            .installableModuleBody.buttons.install:hover {
-                background-size: 30px;
-            }
+.installableModuleBody.buttons.install:hover {
+    background-size: 30px;
+}
 
 /*************
  * SCROLLBAR *
  *************/
 ::-webkit-scrollbar-track {
-	background: #F5F8FA;
+    background: #F5F8FA;
 }
 
 ::-webkit-scrollbar-thumb {
-	background: #D0D2D4;
+    background: #D0D2D4;
 }
 
 /**********
  * CONFIG *
  **********/
 
-#settings > div {
-    background-color: #F5F8FA;
+#settings>div {
+    background-color: #e9e9e9;
 }
 
 /***********
@@ -277,6 +277,6 @@ ul.ModulesList li {
     transition-duration: 0.4s;
 }
 
-    .modalbox-button:hover {
-        border-color: #D0D2D4;
-    }
+.modalbox-button:hover {
+    border-color: #D0D2D4;
+}

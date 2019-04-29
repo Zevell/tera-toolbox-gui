@@ -3,7 +3,16 @@
  ***********/
 
 body {
-    background-color: #F0438C;
+    background: rgb(245, 217, 229);
+    /* Old browsers */
+    background: -moz-linear-gradient(45deg, rgba(245, 217, 229, 1) 0%, rgba(226, 138, 175, 1) 50%, rgba(223, 103, 153, 1) 51%, rgba(246, 182, 209, 1) 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, rgba(245, 217, 229, 1) 0%, rgba(226, 138, 175, 1) 50%, rgba(223, 103, 153, 1) 51%, rgba(246, 182, 209, 1) 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, rgba(245, 217, 229, 1) 0%, rgba(226, 138, 175, 1) 50%, rgba(223, 103, 153, 1) 51%, rgba(246, 182, 209, 1) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5d9e5', endColorstr='#f6b6d1', GradientType=1);
+    /* IE6-9 fallback on horizontal gradient */
     color: #292F33;
 }
 
@@ -15,17 +24,17 @@ body {
     color: #292F33;
 }
 
-    #minimize-btn:hover {
-        color: #E81C4F;
-    }
+#minimize-btn:hover {
+    color: #E81C4F;
+}
 
 #close-btn {
     color: #292F33;
 }
 
-    #close-btn:hover {
-        color: #E81C4F;
-    }
+#close-btn:hover {
+    color: #E81C4F;
+}
 
 
 /********
@@ -36,27 +45,26 @@ ul.tabs li {
     background-color: #F0438C;
 }
 
-    ul.tabs li:hover {
-        background-color: #F9B8D2;
-    }
+ul.tabs li:hover {
+    background-color: #F9B8D2;
+}
 
-    ul.tabs li.current {
-        background: #F9B8D2;
-    }
+ul.tabs li.current {
+    background: #F9B8D2;
+}
 
 .tab-content {
     background: #FFF;
     border: solid 4px #F9B8D2;
 }
 
-.loading {
-}
+.loading {}
 
-    .loading.icon {
-        background: url(../../icons/loadingBlack.svg);
-        background-repeat: no-repeat;
-        background-size: 50px;
-    }
+.loading.icon {
+    background: url(../../icons/loadingBlack.svg);
+    background-repeat: no-repeat;
+    background-size: 50px;
+}
 
 /*********
  * PROXY *
@@ -66,9 +74,9 @@ ul.tabs li {
     background: #F9B8D2;
 }
 
-    #startproxy:hover {
-        background: #FFD2E4;
-    }
+#startproxy:hover {
+    background: #FFD2E4;
+}
 
 /********
  * LOGS *
@@ -83,9 +91,9 @@ ul.tabs li {
     color: #292F33;
 }
 
-    #clear-logs:hover {
-        color: #E81C4F;
-    }
+#clear-logs:hover {
+    color: #E81C4F;
+}
 
 /***********
  * MODULES *
@@ -104,130 +112,126 @@ ul.ModulesList li {
     background-color: #F9B8D2;
 }
 
-    .moduleHeader:hover {
-        background-color: #F0438C;
-    }
-
-    .moduleHeader.active {
-        background-color: #F0438C;
-    }
-
-        .moduleHeader.active:hover {
-            background-color: #F0438C;
-        }
-
-.moduleBody {
+.moduleHeader:hover {
+    background-color: #F0438C;
 }
 
-    .moduleBody.buttons {
-    }
+.moduleHeader.active {
+    background-color: #F0438C;
+}
 
-        .moduleBody.buttons.donate {
-            background: url(../../icons/donateWhite.png);
-            background-repeat: no-repeat;
-            background-size: 28px;
-        }
+.moduleHeader.active:hover {
+    background-color: #F0438C;
+}
 
-            .moduleBody.buttons.donate:hover {
-                background-size: 30px;
-            }
+.moduleBody {}
 
-        .moduleBody.buttons.info {
-            background: url(../../icons/infoWhite.svg);
-            background-repeat: no-repeat;
-            background-size: 25px;
-        }
+.moduleBody.buttons {}
 
-            .moduleBody.buttons.info:hover {
-                background-size: 27px;
-            }
+.moduleBody.buttons.donate {
+    background: url(../../icons/donateWhite.png);
+    background-repeat: no-repeat;
+    background-size: 28px;
+}
 
-        .moduleBody.buttons.uninstall {
-            background: url(../../icons/deleteWhite.png);
-            background-repeat: no-repeat;
-            background-size: 28px;
-        }
+.moduleBody.buttons.donate:hover {
+    background-size: 30px;
+}
 
-            .moduleBody.buttons.uninstall:hover {
-                background-size: 30px;
-            }
+.moduleBody.buttons.info {
+    background: url(../../icons/infoWhite.svg);
+    background-repeat: no-repeat;
+    background-size: 25px;
+}
 
-        .moduleBody.buttons.updateEnabled {
-            background: url(../../icons/updateEnabledWhite.svg);
-            background-repeat: no-repeat;
-            background-size: 26px;
-        }
+.moduleBody.buttons.info:hover {
+    background-size: 27px;
+}
 
-            .moduleBody.buttons.updateEnabled:hover {
-                background-size: 28px;
-            }
+.moduleBody.buttons.uninstall {
+    background: url(../../icons/deleteWhite.png);
+    background-repeat: no-repeat;
+    background-size: 28px;
+}
 
-        .moduleBody.buttons.updateDisabled {
-            background: url(../../icons/updateDisabledWhite.svg);
-            background-repeat: no-repeat;
-            background-size: 26px;
-        }
+.moduleBody.buttons.uninstall:hover {
+    background-size: 30px;
+}
 
-            .moduleBody.buttons.updateDisabled:hover {
-                background-size: 28px;
-            }
+.moduleBody.buttons.updateEnabled {
+    background: url(../../icons/updateEnabledWhite.svg);
+    background-repeat: no-repeat;
+    background-size: 26px;
+}
 
-        .moduleBody.buttons.loadEnabled {
-            background: url(../../icons/loadEnabledWhite.svg);
-            background-repeat: no-repeat;
-            background-size: 24px;
-            margin-top: 2px;
-        }
+.moduleBody.buttons.updateEnabled:hover {
+    background-size: 28px;
+}
 
-            .moduleBody.buttons.loadEnabled:hover {
-                background-size: 26px;
-            }
+.moduleBody.buttons.updateDisabled {
+    background: url(../../icons/updateDisabledWhite.svg);
+    background-repeat: no-repeat;
+    background-size: 26px;
+}
 
-        .moduleBody.buttons.loadDisabled {
-            background: url(../../icons/loadDisabledWhite.svg);
-            background-repeat: no-repeat;
-            background-size: 24px;
-            margin-top: 2px;
-        }
+.moduleBody.buttons.updateDisabled:hover {
+    background-size: 28px;
+}
 
-            .moduleBody.buttons.loadDisabled:hover {
-                background-size: 26px;
-            }
+.moduleBody.buttons.loadEnabled {
+    background: url(../../icons/loadEnabledWhite.svg);
+    background-repeat: no-repeat;
+    background-size: 24px;
+    margin-top: 2px;
+}
+
+.moduleBody.buttons.loadEnabled:hover {
+    background-size: 26px;
+}
+
+.moduleBody.buttons.loadDisabled {
+    background: url(../../icons/loadDisabledWhite.svg);
+    background-repeat: no-repeat;
+    background-size: 24px;
+    margin-top: 2px;
+}
+
+.moduleBody.buttons.loadDisabled:hover {
+    background-size: 26px;
+}
 
 /***********************
  * INSTALLABLE MODULES *
  ***********************/
 
-        .installableModulesFilters > label > input[type=text] {
-            color: #292F33;
-            border-color: #F9B8D2;
-            background-color: #F9B8D2;
-        }
+.installableModulesFilters>label>input[type=text] {
+    color: #292F33;
+    border-color: #F9B8D2;
+    background-color: #F9B8D2;
+}
 
 .installableModuleHeader {
     border-color: #FFF;
     background-color: #F9B8D2;
 }
 
-    .installableModuleHeader:hover {
-        background-color: #F0438C;
-    }
-
-.installableModuleBody {
+.installableModuleHeader:hover {
+    background-color: #F0438C;
 }
 
-    .installableModuleBody.buttons {
-    }
+.installableModuleBody {}
 
-        .installableModuleBody.buttons.install {
-            background: url(../../icons/installWhite.svg);
-            background-repeat: no-repeat;
-            background-size: 28px;
-        }
+.installableModuleBody.buttons {}
 
-            .installableModuleBody.buttons.install:hover {
-                background-size: 30px;
-            }
+.installableModuleBody.buttons.install {
+    background: url(../../icons/installWhite.svg);
+    background-repeat: no-repeat;
+    background-size: 28px;
+}
+
+.installableModuleBody.buttons.install:hover {
+    background-size: 30px;
+}
 
 /*************
  * SCROLLBAR *
@@ -244,7 +248,7 @@ ul.ModulesList li {
  * CONFIG *
  **********/
 
-#settings > div {
+#settings>div {
     background-color: #F9B8D2;
 }
 
@@ -273,6 +277,6 @@ ul.ModulesList li {
     transition-duration: 0.4s;
 }
 
-    .modalbox-button:hover {
-        border-color: #F0438C;
-    }
+.modalbox-button:hover {
+    border-color: #F0438C;
+}

@@ -24,6 +24,16 @@ body {
     min-width: 100%;
     overflow: hidden;
     display: flex;
+    background: #121212;
+    /* Old browsers */
+    background: -moz-linear-gradient(45deg, #121212 0%, #1a1a1a 50%, #171717 51%, #242424 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, #121212 0%, #1a1a1a 50%, #171717 51%, #242424 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, #121212 0%, #1a1a1a 50%, #171717 51%, #242424 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#121212', endColorstr='#242424', GradientType=1);
+    /* IE6-9 fallback on horizontal gradient */
 }
 
 .nodrag {
@@ -491,7 +501,7 @@ ul.tabs li {
 
 #settings>div {
     padding: 4px 8px;
-    margin: 4px 22% 4px 22%;
+    margin: 4px 21% 4px 21%;
     border-radius: 4px;
     /* height: 20%; */
 }
@@ -526,6 +536,10 @@ ul.tabs li {
 
 .theme.pink {
     background-color: #F0438C
+}
+
+.theme.toolbox {
+    background-color: rgb(112, 83, 248);
 }
 
 /***********

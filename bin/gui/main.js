@@ -3,7 +3,7 @@ const {
     ipcRenderer,
     shell
 } = require('electron');
-const Themes = ['black', 'white', 'pink'];
+const Themes = ['black', 'white', 'pink', 'toolbox'];
 
 function displayName(modInfo) {
     if (modInfo.options) {
