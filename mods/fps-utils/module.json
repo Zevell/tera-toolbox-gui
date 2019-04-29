@@ -5,7 +5,6 @@
     "description": "Hides other players and skill effects to significantly boost your framerate",
     "version": "1.0",
     "donationUrl": "https://ko-fi.com/codeagon",
-	"conflicts": ["hide-players"],
     "options": {
         "niceName": "FPS-UTILS",
         "settingsVersion": 1,
