@@ -1,6 +1,17 @@
 const { remote, ipcRenderer, shell } = require('electron');
 const Themes = ['black', 'white', 'pink'];
 
+function HashString(str) {
+    var hash = 0, i, chr;
+    if (str.length === 0) return hash;
+    for (i = 0; i < str.length; i++) {
+        chr = str.charCodeAt(i);
+        hash = ((hash << 5) - hash) + chr;
+        hash |= 0; // Convert to 32bit integer
+    }
+    return hash;
+}
+
 function displayName(modInfo) {
     if (modInfo.options) {
         if (modInfo.options.guiName)
@@ -46,8 +57,8 @@ jQuery(($) => {
         ProxyRunning = running;
         ProxyStarting = false;
 
-        $('#startproxy').text(ProxyRunning ? 'Stop!' : 'Start!');
-        $('#title-status').text(ProxyRunning ? 'Running' : 'Not Running');
+        $('#startproxy').text(ProxyRunning ? 'Stop Proxy' : 'Start Proxy');
+        $('#title-status').text(ProxyRunning ? 'Proxy Running' : 'Proxy Not Running');
     });
 
     function startProxy() {
@@ -55,7 +66,7 @@ jQuery(($) => {
             return;
 
         ProxyStarting = true;
-        $('#startproxy').text('Starting...');
+        $('#startproxy').text('Proxy starting...');
         ipcRenderer.send('start proxy');
     }
 
@@ -63,7 +74,7 @@ jQuery(($) => {
         if (!ProxyRunning)
             return;
 
-        $('#startproxy').text('Stopping...');
+        $('#startproxy').text('Proxy stopping...');
         ipcRenderer.send('stop proxy');
     }
 
@@ -218,14 +229,14 @@ jQuery(($) => {
     $('#noupdate').click(() => {
         const checked = $('#noupdate').is(':checked');
         if (checked)
-            ShowModal('Warning! You disabled automatic updates for all of your mods. This will break things at some point. We will not provide any assistance unless re-enabled!');
+            ShowModal('Warning! You disabled automatic updates for all of your modules. This will break things at some point. We will not provide any assistance unless re-enabled!');
         updateSetting('noupdate', checked);
     });
 
     $('#noselfupdate').click(() => {
         const checked = $('#noselfupdate').is(':checked');
         if (checked)
-            ShowModal('Warning! You disabled automatic updates for TERA Toolbox. This will break things at some point. We will not provide any assistance unless re-enabled!');
+            ShowModal('Warning! You disabled automatic updates for Tera Proxy. This will break things at some point. We will not provide any assistance unless re-enabled!');
         updateSetting('noselfupdate', checked);
     });
 
@@ -259,11 +270,9 @@ jQuery(($) => {
     ipcRenderer.on('set mods', (_, modInfos) => {
         WaitingForModAction = false;
         let NewExpandedModNames = {};
-
-        let ModIndex = 0;
         $('.modulesList').empty();
         modInfos.forEach(modInfo => {
-            const escapedName = (ModIndex++).toString();
+            const escapedName = HashString(modInfo.name);
             const headerId = `modheader-${escapedName}`;
             const bodyId = `modbody-${escapedName}`;
             const donationId = `moddonate-${escapedName}`;
@@ -327,7 +336,7 @@ jQuery(($) => {
             $(`#${uninstallId}`).on('click', (event) => {
                 event.preventDefault();
                 if (ProxyRunning) {
-                    ShowModal("You cannot uninstall mods while TERA Toolbox is running. Please stop it first!");
+                    ShowModal("You cannot uninstall mods while Tera-Proxy is running. Please stop it first!");
                 } else if (!WaitingForModAction) {
                     ipcRenderer.send('uninstall mod', modInfo);
                     WaitingForModAction = true;
@@ -368,32 +377,13 @@ jQuery(($) => {
     // --------------------------------------------------------------------
     const ModsInstallationTabName = 'newmods';
     let WaitingForModInstall = false;
-    let InstallableModInfos = [];
-    let InstallableModFilter = {
-        keywords: [],
-        network: true,
-        client: true,
-    };
 
-    function requestInstallMod(modInfo) {
-        ipcRenderer.send('install mod', modInfo);
-        WaitingForModInstall = true;
-    }
+    ipcRenderer.on('set installable mods', (_, modInfos) => {
+        WaitingForModInstall = false;
 
-    function matchesInstallableModFilter(modInfo) {
-        if (!InstallableModFilter.network && (!modInfo.category || modInfo.category === 'network'))
-            return false;
-        if (!InstallableModFilter.client && modInfo.category === 'client')
-            return false;
-
-        return InstallableModFilter.keywords.length === 0 || InstallableModFilter.keywords.some(keyword => (modInfo.author && modInfo.author.toLowerCase().includes(keyword)) || (modInfo.description && modInfo.description.toLowerCase().includes(keyword)) || displayName(modInfo).toLowerCase().includes(keyword));
-    }
-
-    function rebuildInstallableModsList() {
-        let ModIndex = 0;
         $('.installableModulesList').empty();
-        InstallableModInfos.filter(modInfo => matchesInstallableModFilter(modInfo)).forEach(modInfo => {
-            const escapedName = (ModIndex++).toString();
+        modInfos.forEach(modInfo => {
+            const escapedName = HashString(modInfo.name);
             const headerId = `installablemodheader-${escapedName}`;
             const bodyId = `installablemodbody-${escapedName}`;
             const installId = `installablemodinstall-${escapedName}`;
@@ -418,10 +408,12 @@ jQuery(($) => {
 
             $(`#${installId}`).on('click', (event) => {
                 event.preventDefault();
-                if (ProxyRunning)
-                    ShowModal("You cannot install modules while TERA Toolbox is running. Please stop it first!");
-                else if (!WaitingForModInstall)
-                    requestInstallMod(modInfo);
+                if (ProxyRunning) {
+                    ShowModal("You cannot install modules while Tera-Proxy is running. Please stop it first!");
+                } else if (!WaitingForModInstall) {
+                    ipcRenderer.send('install mod', modInfo);
+                    WaitingForModInstall = true;
+                }
                 return false;
             });
 
@@ -430,27 +422,7 @@ jQuery(($) => {
                 return false;
             });
         });
-    }
 
-    $('#installableModulesFilterString').on('input', () => {
-        InstallableModFilter.keywords = $('#installableModulesFilterString').val().split(',').map(x => x.trim().toLowerCase()).filter(x => x.length > 0);
-        rebuildInstallableModsList();
-    });
-
-    $('#installableModulesFilterNetwork').click(() => {
-        InstallableModFilter.network = $('#installableModulesFilterNetwork').is(':checked');
-        rebuildInstallableModsList();
-    });
-
-    $('#installableModulesFilterClient').click(() => {
-        InstallableModFilter.client = $('#installableModulesFilterClient').is(':checked');
-        rebuildInstallableModsList();
-    });
-
-    ipcRenderer.on('set installable mods', (_, modInfos) => {
-        WaitingForModInstall = false;
-        InstallableModInfos = modInfos;
-        rebuildInstallableModsList();
         tabReady(ModsInstallationTabName);
     });
 

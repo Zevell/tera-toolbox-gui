@@ -2,7 +2,13 @@
     "branch": "master",
     "updatelog": false,
     "devmode": false,
-    "noselfupdate": false,
-    "noupdate": false,
-    "noslstags": false
+    "noselfupdate": true,
+    "noupdate": true,
+    "noslstags": false,
+    "gui": {
+        "enabled": true,
+        "theme": "black",
+        "autostart": false,
+        "logtimes": true
+    }
 }
