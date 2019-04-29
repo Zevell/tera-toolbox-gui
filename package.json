@@ -15,8 +15,9 @@
   },
   "homepage": "https://github.com/tera-toolbox/tera-toolbox#readme",
   "dependencies": {
+    "binary-search": "^1.3.5",
     "electron": "^5.0.0",
-    "request": "^2.83.0",
+    "request": "^2.88.0",
     "request-promise-native": "^1.0.5",
     "tera-crypto-js": "github:tera-toolbox/tera-crypto-js",
     "tera-crypto-native": "github:tera-toolbox/tera-crypto-native",

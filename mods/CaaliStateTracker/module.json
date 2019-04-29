@@ -1,0 +1,7 @@
+{
+    "name": "CaaliStateTracker",
+    "author": "Caali",
+    "description": "Helper module for CaaliLogger",
+    "version": "29.0",
+    "servers": ["https://raw.githubusercontent.com/caali-hackerman/data-logger/master/update/CaaliStateTracker/"]
+}

@@ -4,5 +4,10 @@
     "devmode": false,
     "noselfupdate": false,
     "noupdate": false,
-    "noslstags": false
+    "noslstags": false,
+    "gui": {
+        "enabled": true,
+        "theme": "black",
+        "autostart": false
+    }
 }

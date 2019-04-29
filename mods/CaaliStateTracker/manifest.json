@@ -1,0 +1,41 @@
+{
+    "files": {
+        "index.js": "da1dd94ce37cd28adff3dc18dae6ca883651ff30528d0989785c23357556638c",
+        "module.json": "d96e46fe41b1aa11313e923d013a03c48b82bafe1350ff3d49b72c293338ca92"
+    },
+    "defs": {
+        "C_LOGIN_ARBITER": 2,
+        "C_PLAYER_LOCATION": 5,
+        "C_NOTIFY_LOCATION_IN_ACTION": 4,
+        "C_NOTIFY_LOCATION_IN_DASH": 4,
+        "S_LOGIN": [12, 13],
+        "S_USER_LEVELUP": 2,
+        "S_PLAYER_STAT_UPDATE": 10,
+        "S_CREATURE_CHANGE_HP": 6,
+        "S_PLAYER_CHANGE_MP": 1,
+        "S_PLAYER_CHANGE_STAMINA": 1,
+        "S_INVEN": 18,
+        "S_CREST_INFO": 2,
+        "S_CREST_APPLY": 2,
+        "S_LOAD_TOPO": 3,
+        "S_SPAWN_NPC": 11,
+        "S_NPC_LOCATION": 3,
+        "S_GROUP_NPC_LOCATION": 1,
+        "S_CREATURE_ROTATE": 2,
+        "S_INSTANT_MOVE": 3,
+        "S_INSTANT_DASH": 3,
+        "S_NPC_OCCUPIER_INFO": 1,
+        "S_DESPAWN_NPC": 3,
+        "S_SPAWN_USER": 13,
+        "S_DESPAWN_USER": 3,
+        "S_SPAWN_COLLECTION": 4,
+        "S_DESPAWN_COLLECTION": 2,
+        "S_RETURN_TO_LOBBY": "raw",
+        "S_ABNORMALITY_BEGIN": 3,
+        "S_ABNORMALITY_REFRESH": 1,
+        "S_ABNORMALITY_END": 1,
+        "S_SKILL_LIST": 2,
+        "S_VISIT_NEW_SECTION": 1,
+        "S_NPC_STATUS": 2
+    }
+}
