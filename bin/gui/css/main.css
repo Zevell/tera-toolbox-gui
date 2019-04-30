@@ -50,7 +50,7 @@ body {
     height: 32px;
     top: 3px;
     left: 5px;
-    right: 0px
+    right: 0px;
 }
 
 #title {
@@ -109,14 +109,14 @@ body {
  ********/
 
 .container {
-    margin: 37px 8px 8px 8px;
+    margin: 40px 8px 8px 8px;
     min-height: 100%;
     min-width: 98%;
 }
 
 ul.tabs {
     margin-left: 16px;
-    margin-right: 16px
+    margin-right: 16px;
 }
 
 ul.tabs li {
@@ -124,7 +124,39 @@ ul.tabs li {
     padding: 8px 16px;
     border-radius: 8px 8px 0 0;
     cursor: pointer;
-    user-select: none
+    user-select: none;
+}
+
+li.button {
+    text-align: center;
+    border: none;
+    background: transparent;
+}
+
+li.button.ripple {
+    overflow: hidden;
+    position: relative;
+    transition: background-color 0.3s linear, border 0.3s linear;
+}
+
+li.button.ripple:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: radial-gradient(circle, #000 10%, rgba(0, 0, 0, 0) 10.01%);
+    background-repeat: no-repeat;
+    transform: scale(10);
+    opacity: 0;
+    transition: transform 0.2s, opacity 1s;
+}
+
+li.button.ripple:active:after {
+    transform: scale(0);
+    opacity: 0.2;
+    transition: 0s;
 }
 
 .tab-content {
@@ -171,16 +203,16 @@ ul.tabs li {
     padding: 8px 16px;
     float: right;
     text-align: center;
-    width: 100px
+    width: 100px;
 }
 
 /**********
  * SIMPLE *
  **********/
 
-#simple_view {
+/* #simple_view {
     background: url("https://static.zerochan.net/Elin.full.1070230.jpg");
-}
+} */
 
 /********
  * LOGS *
@@ -237,7 +269,7 @@ ul.tabs li {
     z-index: 999999;
     font-size: 20px;
     position: fixed;
-    top: 82px;
+    top: 93px;
     right: 35px;
     /* todo: add 24px with scrollbar*/
     height: 32px;
