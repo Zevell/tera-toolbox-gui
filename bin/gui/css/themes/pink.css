@@ -42,7 +42,7 @@ body {
  ********/
 
 ul.tabs li {
-    background-color: #F0438C;
+    background-color: #f080ae;
 }
 
 ul.tabs li:hover {
@@ -107,21 +107,39 @@ ul.ModulesList li {
     background-color: #282A2d;
 }
 
+.butn {
+    background: #F9B8D2;
+    background-image: -webkit-linear-gradient(top, #F9B8D2, #f080ae);
+    background-image: -moz-linear-gradient(top, #F9B8D2, #f080ae);
+    background-image: -ms-linear-gradient(top, #F9B8D2, #f080ae);
+    background-image: -o-linear-gradient(top, #F9B8D2, #f080ae);
+    background-image: linear-gradient(to bottom, #F9B8D2, #f080ae);
+    color: black;
+}
+
+.butn:hover {
+    background: #e4669b;
+}
+
+.butn:active {
+    background: #F9B8D2;
+}
+
 .moduleHeader {
     border-color: #FFF;
     background-color: #F9B8D2;
 }
 
 .moduleHeader:hover {
-    background-color: #F0438C;
+    background-color: #f080ae;
 }
 
 .moduleHeader.active {
-    background-color: #F0438C;
+    background-color: #f080ae;
 }
 
 .moduleHeader.active:hover {
-    background-color: #F0438C;
+    background-color: #f080ae;
 }
 
 .moduleBody {}
@@ -216,7 +234,7 @@ ul.ModulesList li {
 }
 
 .installableModuleHeader:hover {
-    background-color: #F0438C;
+    background-color: #f080ae;
 }
 
 .installableModuleBody {}
@@ -237,7 +255,7 @@ ul.ModulesList li {
  * SCROLLBAR *
  *************/
 ::-webkit-scrollbar-track {
-    background: #F0438C;
+    background: #f080ae;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -278,5 +296,5 @@ ul.ModulesList li {
 }
 
 .modalbox-button:hover {
-    border-color: #F0438C;
+    border-color: #f080ae;
 }

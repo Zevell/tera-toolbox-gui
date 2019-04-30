@@ -480,14 +480,11 @@ jQuery(($) => {
 
 
     // --------------------------------------------------------------------
-    // -------------------------- MODS FOLDER TAB -------------------------
+    // -------------------------- MODS FOLDER BUTTON -------------------------
     // --------------------------------------------------------------------
-    const ModsFolderTabName = 'modsfolder';
 
-    addTab(ModsFolderTabName, {
-        click: () => {
-            ipcRenderer.send('show mods folder');
-        },
+    $('#openModsBtn').on('click', function () {
+        ipcRenderer.send('show mods folder');
     });
 
     // --------------------------------------------------------------------

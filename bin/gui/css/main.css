@@ -336,8 +336,24 @@ li.button.ripple:active:after {
     display: block;
 }
 
+.butn {
+    -webkit-border-radius: 7;
+    -moz-border-radius: 7;
+    border-radius: 7px;
+    border: none;
+    font-family: Arial;
+    font-size: 15px;
+    padding: 5px 7px 5px 7px;
+    margin-bottom: 5px;
+    text-decoration: none;
+    outline: none;
+}
+
+.butn:hover {
+    text-decoration: none;
+}
+
 .moduleHeader {
-    border: 1px solid;
     width: 100%;
     display: block;
     cursor: pointer;

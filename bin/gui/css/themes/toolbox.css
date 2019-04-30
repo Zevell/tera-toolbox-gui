@@ -107,6 +107,24 @@ ul.ModulesList li {
     background-color: #282A2d;
 }
 
+.butn {
+    background: #6206db;
+    background-image: -webkit-linear-gradient(top, #6206db, #8745dd);
+    background-image: -moz-linear-gradient(top, #6206db, #8745dd);
+    background-image: -ms-linear-gradient(top, #6206db, #8745dd);
+    background-image: -o-linear-gradient(top, #6206db, #8745dd);
+    background-image: linear-gradient(to bottom, #6206db, #8745dd);
+    color: #BBB;
+}
+
+.butn:hover {
+    background: #5400c2;
+}
+
+.butn:active {
+    background: #6206db;
+}
+
 .moduleHeader {
     border-color: #100025;
     background-color: #4900a8;
