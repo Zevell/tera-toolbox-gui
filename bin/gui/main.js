@@ -289,11 +289,11 @@ jQuery(($) => {
                         ${modInfo.description || ''}
                     </div>
                     <div class="moduleBody buttons">
-                        ${!modInfo.isCoreModule ? `<a href="#" id="${uninstallId}" class="moduleBody buttons uninstall"></a>` : ''}
-                        ${modInfo.donationUrl ? `<a href="#" id="${donationId}" class="moduleBody buttons donate"></a>` : ''}
-                        ${modInfo.supportUrl ? `<a href="#" id="${infoId}" class="moduleBody buttons info"></a>` : ''}
-                        ${(!modInfo.isCoreModule && modInfo.compatibility === 'compatible') ? `<a href="#" id="${updateId}" class="moduleBody buttons update${modInfo.disableAutoUpdate ? 'Disabled' : 'Enabled'}"></a>` : ''}
-                        ${(!modInfo.isCoreModule && modInfo.compatibility === 'compatible') ? `<a href="#" id="${enabledId}" class="moduleBody buttons load${modInfo.disabled ? 'Disabled' : 'Enabled'}"></a>` : ''}
+                        ${(!modInfo.isCoreModule && modInfo.compatibility === 'compatible') ? `<div class="tooltip"><a href="#" id="${enabledId}" class="moduleBody buttons load${modInfo.disabled ? 'Disabled' : 'Enabled'}"></a><span class="tooltiptext">Enabled</span></div>` : ''}    
+                        ${(!modInfo.isCoreModule && modInfo.compatibility === 'compatible') ? `<div class="tooltip"><a href="#" id="${updateId}" class="moduleBody buttons update${modInfo.disableAutoUpdate ? 'Disabled' : 'Enabled'}"></a><span class="tooltiptext">Auto Update</span></div>` : ''}
+                        ${modInfo.supportUrl ? `<div class="tooltip"><a href="#" id="${infoId}" class="moduleBody buttons info"></a><span class="tooltiptext">Info</span></div>` : ''}
+                        ${modInfo.donationUrl ? `<div class="tooltip"><a href="#" id="${donationId}" class="moduleBody buttons donate"></a><span class="tooltiptext">donate</span></div>` : ''}
+                        ${!modInfo.isCoreModule ? `<div class="tooltip"><a href="#" id="${uninstallId}" class="moduleBody buttons uninstall"></a> <span class="tooltiptext">Uninstall</span></div>` : ''}
                     </div>
                 </div>`);
 
