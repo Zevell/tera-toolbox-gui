@@ -252,6 +252,31 @@ ul.ModulesList li {
     background-color: #e9e9e9;
 }
 
+input[type="checkbox"].ios8-switch:checked+label:before {
+    background: #7c7c7c;
+}
+
+input[type="checkbox"].ios8-switch+label:before {
+    background: #fff;
+    border: 1px solid #070707;
+}
+
+input[type="checkbox"].ios8-switch+label:after {
+    background: #fff;
+    border: 1px solid #070707;
+}
+
+.btn-default {
+    color: #7c7c7c;
+    border: 2px solid #7c7c7c;
+}
+
+.btn-default:hover {
+    color: #d3d3d3;
+    background: #7c7c7c;
+    border: 2px solid #7c7c7c;
+}
+
 /***********
  * CREDITS *
  ***********/

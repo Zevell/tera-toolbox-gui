@@ -280,8 +280,10 @@ jQuery(($) => {
         updateMascotSetting('enabled', checked);
         if (checked === false) {
             $('#mascot-img').attr('src', "");
+            log('Mascot: Disabled');
         } else {
             $('#mascot-img').attr('src', $('#mascot-url').val());
+            log('Mascot: Enabled');
         }
     });
 
