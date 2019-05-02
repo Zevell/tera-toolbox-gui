@@ -296,14 +296,20 @@ li.button.ripple:active:after {
     resize: none;
 }
 
+.mascot-img {
+    top: 19%;
+    left: 50%;
+    position: absolute;
+}
+
 #mascot {
+    pointer-events: none;
     height: 85%;
-    width: 95%;
+    width: 95.5%;
     background-color: transparent;
     position: absolute;
-    /* top: 0%; */
     z-index: 2;
-    opacity: 0.5;
+    opacity: 0.6;
     overflow: hidden;
 }
 
