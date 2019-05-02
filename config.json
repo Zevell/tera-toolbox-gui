@@ -7,6 +7,10 @@
         "logtimes": true,
         "theme": "black"
     },
+    "mascot": {
+        "position": "55%",
+        "url": "https://data.whicdn.com/images/178548834/large.png"
+    },
     "noselfupdate": true,
     "noslstags": false,
     "noupdate": true,

@@ -173,6 +173,15 @@ jQuery(($) => {
         $('#noslstags').prop('checked', Settings.noslstags);
         $('#minimizetotray').prop('checked', Settings.gui.minimizetotray);
         $('head').append(`<link rel="stylesheet" href="css/themes/${Themes.indexOf(Settings.gui.theme) < 0 ? Themes[0] : Settings.gui.theme}.css">`);
+
+        if (Settings.mascot) {
+            if (Settings.mascot.url) {
+                setMascotImg(Settings.mascot.url, true);
+            }
+            if (Settings.mascot.pos) {
+                setMascotPos(Settings.mascot.pos);
+            }
+        }
     }
 
     function updateSettings(newSettings) {
@@ -193,6 +202,16 @@ jQuery(($) => {
         let SettingsCopy = Object.assign({}, Settings);
         SettingsCopy.gui = Object.assign(SettingsCopy.gui, Override);
         updateSettings(SettingsCopy);
+    }
+
+    function updateMascotSetting(key, value) {
+        let Override = {};
+        Override[key] = value;
+
+        let SettingsCopy = Object.assign({}, Settings);
+        SettingsCopy.mascot = Object.assign(SettingsCopy.mascot, Override);
+        updateSettings(SettingsCopy);
+        log('Mascot: Settings saved');
     }
 
     ipcRenderer.on('set config', (_, newConfig) => {
@@ -245,13 +264,28 @@ jQuery(($) => {
         updateGUISetting('minimizetotray', $('#minimizetotray').is(':checked'));
     });
 
-    $('#set-mascot').click(() => {
-        $('#mascot-img').attr('src', $('#mascot-url').val());
-    })
+    function setMascotImg(url = null, ignore_errors = false) {
+        console.log("url: " + url);
+        if (!url) url = $('#mascot-url').val()
+        if (ignore_errors === true) return;
+        if ($('#mascot-url').val() === '') return log('Mascot: Invalid URL');
 
-    $('#mascot-position').on('mouseup', function () {
-        $('#mascot-img').css("left", $('#mascot-position').val() + "%");
-    });
+        $('#mascot-img').attr('src', url);
+        updateMascotSetting('url', url);
+        log('Mascot: URL Updated');
+    }
+
+    function setMascotPos(pos = null) {
+        if (!pos || typeof pos !== 'number') pos = $('#mascot-position').val() + "%";
+
+        $('#mascot-img').css("left", pos);
+        updateMascotSetting('position', pos);
+        log('Mascot: Position updated');
+    }
+
+    $('#set-mascot').click(setMascotImg);
+
+    $('#mascot-position').on('mouseup', setMascotPos);
 
     Themes.forEach(theme => {
         $(`#theme_${theme}`).click(() => {

@@ -545,7 +545,7 @@ li.button.ripple:active:after {
  **********/
 
 #settings {
-    padding-top: 4%;
+    padding-top: 1%;
     width: calc(100% - 15px);
     height: calc(100% - 90px);
     position: absolute;
