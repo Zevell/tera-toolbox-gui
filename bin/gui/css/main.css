@@ -255,7 +255,7 @@ li.button.ripple:active:after {
     pointer-events: none;
     height: 100%;
     width: 95.5%;
-    bottom: 3%;
+    bottom: 20px;
     background-color: transparent;
     position: absolute;
     z-index: 2;

@@ -176,10 +176,12 @@ jQuery(($) => {
 
         if (Settings.mascot) {
             if (Settings.mascot.url) {
-                setMascotImg(Settings.mascot.url, true);
+                $('#mascot-img').attr('src', Settings.mascot.url);
+                $('#mascot-url').val(Settings.mascot.url);
             }
-            if (Settings.mascot.pos) {
-                setMascotPos(Settings.mascot.pos);
+            if (Settings.mascot.position) {
+                $('#mascot-img').css("left", Settings.mascot.position + '%');
+                $('#mascot-position').val(Settings.mascot.position);
             }
         }
     }
@@ -265,10 +267,9 @@ jQuery(($) => {
     });
 
     function setMascotImg(url = null, ignore_errors = false) {
-        console.log("url: " + url);
-        if (!url) url = $('#mascot-url').val()
+        if (!url || typeof url !== 'string') url = $('#mascot-url').val()
         if (ignore_errors === true) return;
-        if ($('#mascot-url').val() === '') return log('Mascot: Invalid URL');
+        if (url === '') return log('Mascot: Invalid URL');
 
         $('#mascot-img').attr('src', url);
         updateMascotSetting('url', url);
@@ -276,9 +277,9 @@ jQuery(($) => {
     }
 
     function setMascotPos(pos = null) {
-        if (!pos || typeof pos !== 'number') pos = $('#mascot-position').val() + "%";
+        if (!pos || typeof pos !== 'number') pos = $('#mascot-position').val();
 
-        $('#mascot-img').css("left", pos);
+        $('#mascot-img').css("left", pos + '%');
         updateMascotSetting('position', pos);
         log('Mascot: Position updated');
     }
