@@ -8,6 +8,7 @@
         "theme": "black"
     },
     "mascot": {
+        "enabled": true,
         "position": "53",
         "url": "https://ui-ex.com/images/abs-drawing-anime-girl-5.png"
     },

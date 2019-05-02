@@ -172,16 +172,26 @@ jQuery(($) => {
         $('#devmode').prop('checked', Settings.devmode);
         $('#noslstags').prop('checked', Settings.noslstags);
         $('#minimizetotray').prop('checked', Settings.gui.minimizetotray);
+        $('#toggle-mascot').prop('checked', Settings.mascot.enabled);
         $('head').append(`<link rel="stylesheet" href="css/themes/${Themes.indexOf(Settings.gui.theme) < 0 ? Themes[0] : Settings.gui.theme}.css">`);
 
         if (Settings.mascot) {
-            if (Settings.mascot.url) {
-                $('#mascot-img').attr('src', Settings.mascot.url);
-                $('#mascot-url').val(Settings.mascot.url);
-            }
-            if (Settings.mascot.position) {
-                $('#mascot-img').css("left", Settings.mascot.position + '%');
-                $('#mascot-position').val(Settings.mascot.position);
+            if (Settings.mascot.enabled === false) {
+                if (Settings.mascot.url) {
+                    $('#mascot-url').val(Settings.mascot.url);
+                }
+                if (Settings.mascot.position) {
+                    $('#mascot-position').val(Settings.mascot.position);
+                }
+            } else {
+                if (Settings.mascot.url) {
+                    $('#mascot-img').attr('src', Settings.mascot.url);
+                    $('#mascot-url').val(Settings.mascot.url);
+                }
+                if (Settings.mascot.position) {
+                    $('#mascot-img').css("left", Settings.mascot.position + '%');
+                    $('#mascot-position').val(Settings.mascot.position);
+                }
             }
         }
     }
@@ -213,7 +223,6 @@ jQuery(($) => {
         let SettingsCopy = Object.assign({}, Settings);
         SettingsCopy.mascot = Object.assign(SettingsCopy.mascot, Override);
         updateSettings(SettingsCopy);
-        log('Mascot: Settings saved');
     }
 
     ipcRenderer.on('set config', (_, newConfig) => {
@@ -266,6 +275,16 @@ jQuery(($) => {
         updateGUISetting('minimizetotray', $('#minimizetotray').is(':checked'));
     });
 
+    $('#toggle-mascot').click(() => {
+        const checked = $('#toggle-mascot').is(':checked');
+        updateMascotSetting('enabled', checked);
+        if (checked === false) {
+            $('#mascot-img').attr('src', "");
+        } else {
+            $('#mascot-img').attr('src', $('#mascot-url').val());
+        }
+    });
+
     function setMascotImg(url = null, ignore_errors = false) {
         if (!url || typeof url !== 'string') url = $('#mascot-url').val()
         if (ignore_errors === true) return;
@@ -273,6 +292,7 @@ jQuery(($) => {
 
         $('#mascot-img').attr('src', url);
         updateMascotSetting('url', url);
+        updateMascotSetting('enabled', true)
         log('Mascot: URL Updated');
     }
 
