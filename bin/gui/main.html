@@ -45,7 +45,7 @@
         </div>
         <div id="log" class="tab-content nodrag current">
             <div id="mascot">
-                <img class="mascot-img" src="https://data.whicdn.com/images/178548834/large.png" />
+                <img id="mascot-img" src="" />
             </div>
             <textarea id="log-contents" class="log-contents" disabled readonly></textarea>
             <button id="clear-logs">&times;</button>
@@ -131,6 +131,15 @@
             <div>
                 <a>Minimize to system tray</a>
                 <input id="minimizetotray" type="checkbox">
+            </div>
+            <div>
+                <a>Mascot URL</a>
+                <input id="mascot-url" type="input">
+                <button id="set-mascot">Set Mascot</button>
+            </div>
+            <div>
+                <a>Mascot Position</a>
+                <input id="mascot-position" type="range" min="0" max="65" value="50" step="1">
             </div>
         </div>
 

@@ -296,7 +296,7 @@ li.button.ripple:active:after {
     resize: none;
 }
 
-.mascot-img {
+#mascot-img {
     top: 19%;
     left: 50%;
     position: absolute;
@@ -304,8 +304,9 @@ li.button.ripple:active:after {
 
 #mascot {
     pointer-events: none;
-    height: 85%;
+    height: 100%;
     width: 95.5%;
+    bottom: 3%;
     background-color: transparent;
     position: absolute;
     z-index: 2;
@@ -595,7 +596,14 @@ li.button.ripple:active:after {
  **********/
 
 #settings {
-    padding-top: 8%;
+    padding-top: 4%;
+    width: 98%;
+    height: 85%;
+    position: absolute;
+}
+
+#mascot-settings {
+    width: 485px;
 }
 
 #settings>div {

@@ -245,6 +245,14 @@ jQuery(($) => {
         updateGUISetting('minimizetotray', $('#minimizetotray').is(':checked'));
     });
 
+    $('#set-mascot').click(() => {
+        $('#mascot-img').attr('src', $('#mascot-url').val());
+    })
+
+    $('#mascot-position').on('mouseup', function () {
+        $('#mascot-img').css("left", $('#mascot-position').val() + "%");
+    });
+
     Themes.forEach(theme => {
         $(`#theme_${theme}`).click(() => {
             $('head>link').filter('[rel="stylesheet"]:last').remove();
