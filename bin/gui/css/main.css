@@ -266,11 +266,11 @@ li.button.ripple:active:after {
 } */
 
 #clear-logs {
-    z-index: 999999;
+    z-index: 999;
     font-size: 20px;
     position: fixed;
-    top: 93px;
-    right: 35px;
+    top: 90px;
+    right: 2%;
     /* todo: add 24px with scrollbar*/
     height: 32px;
     width: 32px;
@@ -283,9 +283,10 @@ li.button.ripple:active:after {
 }
 
 .log-contents {
+    border: none;
     word-break: break-all;
     position: inherit;
-    z-index: 99999;
+    z-index: 1;
     min-height: 100%;
     min-width: 100%;
     overflow: scroll;
@@ -293,6 +294,17 @@ li.button.ripple:active:after {
     font-family: Consolas, monaco, monospace;
     user-select: all;
     resize: none;
+}
+
+#mascot {
+    height: 85%;
+    width: 95%;
+    background-color: transparent;
+    position: absolute;
+    /* top: 0%; */
+    z-index: 2;
+    opacity: 0.5;
+    overflow: hidden;
 }
 
 /***********
