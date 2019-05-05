@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TERA Toolbox</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="css/main.css">
+    <script>
+        window.$ = window.jQuery = require('./js/jquery-3.2.1.min.js')
+    </script>
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <!-- Title Bar -->
+    <div id="title-bar" class="title-bar">
+        <img src="icon.ico" id="title-icon">
+        <div id="title">TERA Toolbox</div>
+        <div id="title-status">Not running</div>
+        <button id="minimize-btn" class="nodrag">-</button>
+        <button id="close-btn" class="nodrag">&times;</button>
+    </div>
+
+    <!-- Content -->
+    <div class="container">
+        <!-- Tab Header -->
+        <ul class="tabs">
+            <li class="tab-link nodrag button ripple current" tabname="log">Log</li>
+            <li class="tab-link nodrag button ripple" tabname="mods">My Mods</li>
+            <li class="tab-link nodrag button ripple" tabname="newmods">Get More Mods</li>
+            <li class="tab-link nodrag button ripple" tabname="settings">Settings</li>
+            <li class="tab-link nodrag button ripple" tabname="help" tabclickonly="true">Need Help?</li>
+            <li class="tab-link nodrag button ripple" tabname="credits">Credits</li>
+            <a class="nodrag button ripple" id="startproxy">Start!</a>
+        </ul>
+
+        <!-- Console -->
+        <div id="log_loading" class="tab-content nodrag">
+            <div class="loading">
+                <div class="loading icon"></div>
+                <div class="loading text">Loading proxy log...</div>
+            </div>
+        </div>
+        <div id="log" class="tab-content nodrag current">
+            <div id="mascot">
+                <img id="mascot-img" src="" />
+            </div>
+            <textarea id="log-contents" class="log-contents" disabled readonly></textarea>
+            <button id="clear-logs">&times;</button>
+        </div>
+
+        <!-- Installed Modules -->
+        <div id="mods_loading" class="tab-content nodrag">
+            <div class="loading">
+                <div class="loading icon"></div>
+                <div class="loading text">Loading installed mods...</div>
+            </div>
+        </div>
+        <div id="mods" class="tab-content nodrag">
+            <div id="openMods">
+                <button id="openModsBtn" class="butn nodrag">Open Mods Folder</button>
+            </div>
+            <div class="modulesList">
+            </div>
+        </div>
+
+        <!-- New Module Installation -->
+        <div id="newmods_loading" class="tab-content nodrag">
+            <div class="loading">
+                <div class="loading icon"></div>
+                <div class="loading text">Loading list of mods...</div>
+            </div>
+        </div>
+        <div id="newmods" class="tab-content nodrag">
+            <div class="installableModulesFilters">
+                <label>Filter: <input type="text" id="installableModulesFilterString" /></label>
+                <label><input type="checkbox" id="installableModulesFilterNetwork" checked />Network / Proxy
+                    Mods</label>
+                <label><input type="checkbox" id="installableModulesFilterClient" checked />Client / UI Mods</label>
+            </div>
+            <div class="installableModulesList">
+            </div>
+        </div>
+
+        <!-- Settings -->
+        <div id="settings_loading" class="tab-content nodrag">
+            <div class="loading">
+                <div class="loading icon"></div>
+                <div class="loading text">Loading settings...</div>
+            </div>
+        </div>
+        <div id="settings" class="tab-content nodrag">
+            <div>
+                <a>Theme</a>
+                <div id="theme_black" class="theme black"></div>
+                <div id="theme_white" class="theme white"></div>
+                <div id="theme_pink" class="theme pink"></div>
+                <div id="theme_toolbox" class="theme toolbox"></div>
+            </div>
+            <div>
+                <a>Autostart when opening TERA Toolbox</a>
+                <input id="autostart" type="checkbox" class="ios8-switch ios8-switch-sm">
+            </div>
+            <div>
+                <a>Show detailed update log</a>
+                <input id="updatelog" type="checkbox" class="ios8-switch ios8-switch-sm">
+            </div>
+            <div>
+                <a>Show time in log</a>
+                <input id="logtimes" type="checkbox" class="ios8-switch ios8-switch-sm">
+            </div>
+            <div>
+                <a>Disable mod updates</a>
+                <input id="noupdate" type="checkbox" class="ios8-switch ios8-switch-sm">
+            </div>
+            <div>
+                <a>Disable self-updates</a>
+                <input id="noselfupdate" type="checkbox" class="ios8-switch ios8-switch-sm">
+            </div>
+            <div>
+                <a>Enable Developer Mode</a>
+                <input id="devmode" type="checkbox" class="ios8-switch ios8-switch-sm">
+            </div>
+            <div>
+                <a>Hide tags in server list</a>
+                <input id="noslstags" type="checkbox" class="ios8-switch ios8-switch-sm">
+            </div>
+            <div>
+                <a>Minimize to system tray</a>
+                <input id="minimizetotray" type="checkbox" class="ios8-switch ios8-switch-sm">
+            </div>
+            <div>
+                <a>Mascot URL</a>
+                <input id="mascot-url" type="input">
+                <button id="set-mascot" class="btn btn-default">Set Mascot</button>
+                <input id="toggle-mascot" type="checkbox" class="ios8-switch ios8-switch-sm">
+                <label for='toggle-mascot'>Toggle Mascot</label>
+            </div>
+            <div>
+                <a>Mascot Position</a>
+                <input id="mascot-position" type="range" min="0" max="65" value="50" step="1">
+            </div>
+        </div>
+
+        <!-- Credits -->
+        <div id="credits_loading" class="tab-content nodrag">
+            <div class="loading">
+                <div class="loading icon"></div>
+                <div class="loading text">Loading credits...</div>
+            </div>
+        </div>
+        <div id="credits" class="tab-content nodrag">
+            <div class="credits text">
+                Thanks to<br />
+                SaltyMonkey: Installer<br />
+                Mathicha &amp; Pentagon: Core GUI stuff<br />
+                Meishu / Pinkie Pie: Original Tera-Proxy Core<br />
+                All Mod Developers
+            </div>
+        </div>
+
+        <!-- Modal Box -->
+        <div id="modalbox" class="modalbox">
+            <div class="modalbox-content">
+                <div id="modalbox-text" class="modalbox-text"></div>
+                <button id="modalbox-ok" class="modalbox-button">OK</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
