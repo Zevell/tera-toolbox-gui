@@ -11,7 +11,7 @@ const fs = require("fs");
 const path = require("path");
 
 // Constants
-const TeraProxyAutoUpdateServers = ["https://raw.githubusercontent.com/tera-toolbox/tera-toolbox/", "https://teralogs.lima-city.de/proxy/"];
+const TeraProxyAutoUpdateServers = ["https://raw.githubusercontent.com/Zevell/tera-toolbox-gui"];
 const DiscordURL = "https://discord.gg/dUNDDtw";
 
 // Safely load configuration
@@ -52,7 +52,10 @@ function hash(data) {
 
 async function autoUpdateFile(file, filepath, url, expectedHash = null) {
     try {
-        const updatedFile = await request({ url: url, encoding: null });
+        const updatedFile = await request({
+            url: url,
+            encoding: null
+        });
 
         if (expectedHash && expectedHash !== hash(updatedFile))
             throw new Error(`ERROR: ${url}\nDownloaded file doesn't match hash specified in patch manifest!`);
@@ -88,7 +91,10 @@ async function autoUpdateSelf(outputConsole, updatelimit = true, serverIndex = 0
         outputConsole.log(`[update] Self-update started (Branch: ${branch})`);
 
     try {
-        const manifest = await request({ url: TeraProxyAutoUpdateServers[serverIndex] + branch + '/manifest.json', json: true });
+        const manifest = await request({
+            url: TeraProxyAutoUpdateServers[serverIndex] + branch + '/manifest.json',
+            json: true
+        });
         if (!manifest["files"])
             throw new Error("Invalid manifest!");
 
