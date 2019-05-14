@@ -11,7 +11,7 @@ const fs = require("fs");
 const path = require("path");
 
 // Constants
-const TeraProxyAutoUpdateServers = ["https://raw.githubusercontent.com/Zevell/tera-toolbox-gui"];
+const TeraProxyAutoUpdateServers = ["https://raw.githubusercontent.com/Zevell/tera-toolbox-gui/"];
 const DiscordURL = "https://discord.gg/dUNDDtw";
 
 // Safely load configuration
