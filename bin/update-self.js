@@ -22,7 +22,7 @@ try {
     const config = require("./config").loadConfig();
     if (config) {
         if (config.branch)
-            branch = config.branch.toLowerCase();
+            branch = config.branch;
         updatelog = !!config.updatelog;
         disableSelfUpdate = !!config.noselfupdate;
     }
