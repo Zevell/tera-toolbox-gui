@@ -15,7 +15,7 @@ const TeraProxyAutoUpdateServers = ["https://raw.githubusercontent.com/Zevell/te
 const DiscordURL = "https://discord.gg/dUNDDtw";
 
 // Safely load configuration
-let branch = 'master';
+let branch = 'beta';
 let updatelog = false;
 let disableSelfUpdate = false;
 try {
